@@ -1,0 +1,2145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAQINPRO | Catálogo Oficial DeWalt 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dewalt: {
+                            yellow: '#FEB800',
+                            darkYellow: '#E5A500',
+                            black: '#121212',
+                            cardBg: '#1A1A1A',
+                            border: '#2E2E2E'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #f3f4f6;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(254, 184, 0, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .industrial-pattern {
+            background-color: #121212;
+            background-image: radial-gradient(#262626 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+
+        .glass-card {
+            background: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FEB800;
+        }
+
+        .category-btn.active {
+            background-color: #FEB800;
+            color: #121212;
+            font-weight: 800;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            15% { opacity: 1; transform: translateY(0); }
+            85% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+        .toast-notification {
+            animation: fadeInOut 2.5s forwards;
+        }
+
+        @keyframes detailExpand {
+            from { opacity: 0; transform: scale(0.88) translateY(12px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .product-detail-panel {
+            animation: detailExpand 240ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .product-detail-panel { animation: none; }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-dewalt-yellow selection:text-black">
+
+    <header class="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-dewalt-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <div class="flex items-center space-x-3 sm:space-x-5">
+                    <button id="mobileSidebarToggle" onclick="toggleMobileSidebar()" class="lg:hidden text-gray-300 hover:text-white text-xl p-2">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <div class="flex items-center space-x-2">
+                        <button type="button" onclick="goHome()" aria-label="Ir a la página principal" class="inline-flex items-center hover:opacity-90 transition-opacity">
+                            <img src="images/maqinpro.jpg" class="h-10 max-w-[190px] object-contain" alt="MAQINPRO">
+                        </button>
+                        <span class="text-xs sm:text-sm font-semibold tracking-widest text-gray-400 uppercase hidden sm:inline">| INDUSTRIAL</span>
+                    </div>
+                    <div class="h-6 w-px bg-gray-700 hidden sm:block"></div>
+                    <div class="hidden sm:flex items-center gap-2">
+                        <img src="images/dewalt.jpg" class="h-10 object-contain" alt="DEWALT">
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <button id="adminToggleBtn" onclick="toggleAdminMode()" class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-gray-700 bg-dewalt-cardBg text-gray-300 hover:text-white hover:border-dewalt-yellow transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-user-gear"></i>
+                        <span id="adminToggleLabel">Modo Admin</span>
+                    </button>
+
+                    <button onclick="openCartModal()" class="relative bg-dewalt-yellow hover:bg-dewalt-darkYellow text-black font-bold px-4 py-2 rounded-lg transition-all duration-200 flex items-center space-x-2 shadow-lg">
+                        <i class="fa-solid fa-clipboard-list text-lg"></i>
+                        <span class="hidden sm:inline text-sm">Mi Requerimiento</span>
+                        <span id="cartBadge" class="bg-black text-dewalt-yellow text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="catalogHeroBanner" class="relative overflow-hidden border-b border-dewalt-border industrial-pattern py-10 sm:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-12 gap-6 items-center">
+                <div class="md:col-span-8 space-y-3 text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 bg-dewalt-yellow/10 border border-dewalt-yellow/30 text-dewalt-yellow px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-boxes-packing"></i> Catálogo de Venta Industrial al por Mayor 2026
+                    </div>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                        PORTAFOLIO DE HERRAMIENTAS Y CONSUMIBLES <img src="images/dewalt.jpg" class="h-8 inline-block align-middle object-contain" alt="DEWALT">
+                    </h1>
+                    <p class="text-gray-300 text-xs sm:text-sm max-w-2xl font-light">
+                        Agrega varios ítems y sus cantidades al requerimiento. Puedes seguir navegando para añadir diferentes discos o herramientas a tu lista consolidada antes de enviar el pedido por WhatsApp.
+                    </p>
+                </div>
+                <div class="md:col-span-4 flex justify-center md:justify-end">
+                    <div class="bg-black/80 border border-dewalt-yellow/60 rounded-xl p-4 text-center max-w-xs shadow-xl relative overflow-hidden backdrop-blur-md">
+                        <i class="fa-solid fa-file-invoice-dollar text-3xl text-dewalt-yellow mb-1"></i>
+                        <p class="text-[10px] text-gray-400 font-semibold tracking-wider uppercase">Requerimientos Directos</p>
+                        <h3 class="text-base font-bold text-white mt-0.5">Atención Comercial B2B</h3>
+                        <p class="text-[11px] text-dewalt-yellow font-bold mt-1">Envío a Todo el Perú por WhatsApp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full flex flex-col lg:flex-row gap-8">
+
+        <!-- SIDEBAR -->
+        <aside id="sidebarMenu" class="w-full lg:w-64 flex-shrink-0 hidden lg:block">
+            <div class="sticky top-28 bg-dewalt-cardBg border border-dewalt-border rounded-2xl p-4 space-y-2">
+                <div class="flex items-center justify-between pb-3 border-b border-dewalt-border">
+                    <span class="text-xs font-black text-gray-400 uppercase tracking-wider">Categorías (21)</span>
+                    <i class="fa-solid fa-layer-group text-dewalt-yellow"></i>
+                </div>
+
+                <div class="space-y-1 max-h-[calc(100vh-220px)] overflow-y-auto pr-1" id="categoryList">
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN PRODUCT DISPLAY -->
+        <main class="flex-1 w-full min-w-0">
+
+            <section id="homeView" class="space-y-8">
+                <div class="overflow-hidden border border-dewalt-border bg-black grid lg:grid-cols-12">
+                    <div class="lg:col-span-7 p-6 sm:p-9 lg:p-12 flex flex-col justify-center industrial-pattern">
+                        <div class="inline-flex items-center gap-2 text-dewalt-yellow text-xs font-black uppercase tracking-wider">
+                            <span class="w-2 h-2 bg-dewalt-yellow"></span> Catálogo mayorista DeWalt 2026
+                        </div>
+                        <h1 class="text-3xl sm:text-4xl font-black text-white leading-tight mt-4">Encuentra la herramienta<br><span class="text-dewalt-yellow">para tu próximo trabajo.</span></h1>
+                        <p class="text-sm text-gray-300 mt-4 max-w-xl">Explora las categorías del catálogo MAQINPRO y encuentra el equipo que necesitas.</p>
+                        <div class="relative mt-7 max-w-xl">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            <input id="homeCategorySearch" type="search" oninput="renderHomeCategories()" placeholder="Buscar una categoría..." class="w-full pl-11 pr-4 py-3 bg-black border border-gray-600 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-dewalt-yellow">
+                        </div>
+                        <p id="homeCategoryCount" class="text-xs text-gray-500 mt-3"></p>
+                    </div>
+                    <div class="lg:col-span-5 relative min-h-64 sm:min-h-80 lg:min-h-[440px] overflow-hidden bg-black">
+                        <img src="maqinpro-tools-cover.png" alt="Herramientas DeWalt exhibidas en el taller MAQINPRO" class="absolute inset-0 h-full w-full object-cover object-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        <p class="absolute bottom-5 left-5 right-5 text-xs sm:text-sm font-black uppercase tracking-wider text-white">Herramientas para el trabajo profesional</p>
+                    </div>
+                </div>
+
+                <section aria-labelledby="homeCompanyTitle" class="border-y border-dewalt-border py-8 sm:py-10">
+                    <div class="grid lg:grid-cols-12 gap-8 lg:gap-10">
+                        <div class="lg:col-span-4">
+                            <p class="text-[10px] text-dewalt-yellow font-black uppercase tracking-wider">MAQINPRO · TRUJILLO</p>
+                            <h2 id="homeCompanyTitle" class="text-2xl sm:text-3xl text-white font-black leading-tight mt-2">Maquinaria industrial y profesional.</h2>
+                            <p class="text-sm text-gray-300 leading-relaxed mt-4">Somos una empresa dedicada a la distribución y servicio de herramientas industriales DeWalt, con más de 20 años de experiencia en el mercado trujillano.</p>
+                        </div>
+                        <div class="lg:col-span-8 grid sm:grid-cols-3 gap-6 sm:gap-5">
+                            <article class="border-l-2 border-dewalt-yellow pl-4">
+                                <h3 class="text-sm text-white font-black">Venta y distribución</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed mt-2">Venta al por mayor y menor de herramientas, accesorios y repuestos DeWalt.</p>
+                            </article>
+                            <article class="border-l-2 border-dewalt-yellow pl-4">
+                                <h3 class="text-sm text-white font-black">Servicio técnico</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed mt-2">Servicio técnico catalogado con cinco estrellas por la marca, a cargo de técnicos con más de 15 años de experiencia y capacitación constante.</p>
+                            </article>
+                            <article class="border-l-2 border-dewalt-yellow pl-4">
+                                <h3 class="text-sm text-white font-black">Capacitaciones</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed mt-2">Especialistas certificados capacitan a equipos operativos y de supervisión para usar correctamente los equipos, prevenir accidentes y alargar su vida útil.</p>
+                            </article>
+                        </div>
+                    </div>
+
+                </section>
+
+                <section aria-labelledby="homeCategoriesTitle">
+                    <div class="flex items-end justify-between gap-4 border-b border-dewalt-border pb-3 mb-4">
+                        <div>
+                            <p class="text-[10px] text-dewalt-yellow font-black uppercase tracking-wider">MAQINPRO · DEWALT</p>
+                            <h2 id="homeCategoriesTitle" class="text-xl sm:text-2xl text-white font-black mt-1">Explora por categoría</h2>
+                        </div>
+                        <i class="fa-solid fa-layer-group text-dewalt-yellow text-xl"></i>
+                    </div>
+                    <div id="homeCategoryGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3"></div>
+                    <p id="homeCategoryNoResults" class="hidden text-sm text-gray-400 py-8 text-center">No encontramos categorías con ese nombre.</p>
+                </section>
+            </section>
+
+            <div id="catalogView" class="hidden">
+
+            <div id="adminNotice" class="hidden mb-6 p-4 bg-amber-500/10 border border-amber-500/40 rounded-xl text-amber-300 text-sm flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-unlock-keyhole text-lg"></i>
+                    <span><strong>Modo Administrador Activo:</strong> Selecciona archivos de tu PC (JPG/PNG) para cambiar la foto de cada producto localmente.</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="resetAllImages()" class="text-xs bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-500/50 transition-all">
+                        <i class="fa-solid fa-rotate-left mr-1"></i>Restablecer Imágenes
+                    </button>
+                    <button onclick="toggleAdminMode()" class="text-xs underline hover:text-white">Cerrar Admin</button>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 pb-4 border-b border-dewalt-border gap-2">
+                <div>
+                    <span class="text-xs text-dewalt-yellow font-bold uppercase tracking-wider">Categoría Seleccionada:</span>
+                    <h2 id="currentCategoryTitle" class="text-2xl font-black text-white">DISCOS</h2>
+                </div>
+                <div id="activeCategoryBadge" class="bg-dewalt-yellow/10 border border-dewalt-yellow/30 text-dewalt-yellow text-xs px-3 py-1 rounded-full font-bold">
+                    <i class="fa-solid fa-check-circle mr-1"></i> Módulos Especializados
+                </div>
+            </div>
+
+            <div id="discsSpecialHeader" class="space-y-4 mb-6">
+                <div class="bg-dewalt-cardBg border border-dewalt-border p-3 rounded-xl flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold text-gray-400 uppercase mr-2"><i class="fa-solid fa-filter text-dewalt-yellow mr-1"></i> Subtipo de Disco:</span>
+                    <div id="discSubtypeFilters" class="flex flex-wrap items-center gap-2">
+                    <button onclick="setDiscSubtype('Todos')" id="subtype-Todos" class="subtype-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-dewalt-yellow text-black">
+                        Todos los Discos
+                    </button>
+                    <button onclick="setDiscSubtype('Corte Metal & Inox')" id="subtype-Corte" class="subtype-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-black text-gray-300 border border-dewalt-border hover:border-dewalt-yellow">
+                        ⚡ Corte Metal & Inox
+                    </button>
+                    <button onclick="setDiscSubtype('Desbaste')" id="subtype-Desbaste" class="subtype-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-black text-gray-300 border border-dewalt-border hover:border-dewalt-yellow">
+                        🛠️ Desbaste
+                    </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-3 justify-between items-stretch lg:items-center">
+                    <div class="relative flex-1">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="searchInput" oninput="filterProducts()" placeholder="Buscar por código (ej. DW84407, DW84406, DW8354...)" 
+                            class="w-full pl-10 pr-4 py-2.5 bg-dewalt-cardBg border border-dewalt-border rounded-xl text-xs sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:border-dewalt-yellow shadow-inner">
+                    </div>
+
+                    <div class="flex items-center justify-between bg-dewalt-cardBg border border-dewalt-border px-3 py-2 rounded-xl">
+                        <label for="stockFilterToggle" class="text-xs font-medium text-gray-300 mr-2 cursor-pointer flex items-center gap-1.5">
+                            <i class="fa-solid fa-box-archive text-dewalt-yellow"></i> Solo Stock
+                        </label>
+                        <input type="checkbox" id="stockFilterToggle" onchange="filterProducts()" class="w-4 h-4 accent-dewalt-yellow cursor-pointer rounded">
+                    </div>
+                </div>
+            </div>
+
+            <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+            </div>
+
+            <div id="emptyCategoryView" class="hidden text-center py-16 px-4 bg-dewalt-cardBg/60 rounded-2xl border border-dewalt-border">
+                <div class="w-16 h-16 bg-dewalt-yellow/10 text-dewalt-yellow rounded-2xl flex items-center justify-center mx-auto mb-4 border border-dewalt-yellow/30 text-2xl">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+                <h3 id="emptyCategoryTitle" class="text-xl font-bold text-white mb-2">Catálogo 2026 en actualización</h3>
+                <p class="text-gray-400 text-xs sm:text-sm max-w-md mx-auto leading-relaxed mb-6">
+                    Próximamente disponibilidades e importaciones de esta categoría. Puedes consultar el catálogo o solicitar cotización directa por WhatsApp.
+                </p>
+                <button onclick="requestGeneralCategoryQuote()" class="bg-green-500 hover:bg-green-600 text-black font-bold px-5 py-2.5 rounded-xl text-xs transition-all inline-flex items-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Consultar Disponibilidad de esta Categoría</span>
+                </button>
+            </div>
+
+            <div id="noResultsState" class="hidden text-center py-12 bg-dewalt-cardBg/30 rounded-2xl border border-dewalt-border mt-4">
+                <i class="fa-solid fa-magnifying-glass text-4xl text-gray-600 mb-3"></i>
+                <h3 class="text-base font-bold text-gray-300">No se encontraron productos con ese criterio</h3>
+                <p class="text-gray-500 text-xs mt-1">Intenta ajustando el código de búsqueda o palabra clave.</p>
+                <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-dewalt-yellow text-black font-bold text-xs rounded-lg hover:bg-dewalt-darkYellow">
+                    Restablecer Filtros
+                </button>
+            </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-50 pointer-events-none space-y-2"></div>
+
+    <footer class="bg-black border-t border-dewalt-border mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center md:text-left">
+                <div class="lg:col-span-1">
+                    <h4 class="mb-1"><img src="images/maqinpro.jpg" class="h-10 max-w-[220px] object-contain" alt="MAQINPRO"></h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Distribución mayorista autorizada de herramientas y consumibles industriales DeWalt 2026.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold text-xs mb-2 uppercase">Teléfono</h5>
+                    <a href="tel:+51905430860" class="text-gray-300 text-sm hover:text-dewalt-yellow"><i class="fa-brands fa-whatsapp text-dewalt-yellow mr-1.5"></i>+51 905 430 860</a>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold text-xs mb-2 uppercase">Correo</h5>
+                    <a href="mailto:contacto@maqinpro.com" class="text-gray-300 text-sm hover:text-dewalt-yellow">contacto@maqinpro.com</a>
+                </div>
+                <div>
+                    <h5 class="text-white font-bold text-xs mb-2 uppercase">Redes sociales</h5>
+                    <p class="text-gray-300 text-sm"><i class="fa-brands fa-facebook text-dewalt-yellow mr-1"></i><i class="fa-brands fa-instagram text-dewalt-yellow mr-1"></i>MAQINPRO.PERU</p>
+                </div>
+            </div>
+            <p class="text-xs text-gray-500 text-center mt-8 pt-4 border-t border-dewalt-border">© 2026 MAQINPRO - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="cartModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-dewalt-cardBg border border-dewalt-border w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <div class="bg-black p-4 border-b border-dewalt-border flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-clipboard-list text-dewalt-yellow text-xl"></i>
+                    <h3 class="text-base font-bold text-white">Resumen de Requerimiento Industrial Multi-Producto</h3>
+                </div>
+                <button onclick="closeCartModal()" class="text-gray-400 hover:text-white text-lg p-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-5 overflow-y-auto space-y-5 flex-1">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Ítems Seleccionados para Cotización</h4>
+                        <button onclick="closeCartModal()" class="text-xs text-dewalt-yellow font-semibold hover:underline">
+                            + Seguir Agregando Productos
+                        </button>
+                    </div>
+                    <div id="cartItemsContainer" class="space-y-2">
+                    </div>
+                </div>
+
+                <div class="space-y-3 border-t border-dewalt-border pt-3">
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Información para la Cotización</h4>
+                    <div class="grid sm:grid-cols-2 gap-3">
+                        <input type="text" id="clientCompany" placeholder="Nombre de la Empresa / RUC" class="w-full p-2.5 bg-black border border-dewalt-border rounded-lg text-xs text-white focus:border-dewalt-yellow outline-none">
+                        <input type="text" id="clientCity" placeholder="Ciudad / Destino" class="w-full p-2.5 bg-black border border-dewalt-border rounded-lg text-xs text-white focus:border-dewalt-yellow outline-none">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-black p-4 border-t border-dewalt-border flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="text-left">
+                    <span class="text-xs text-gray-400 block">Total Unidades Solicitadas:</span>
+                    <span id="cartTotalUnits" class="text-xl font-black text-dewalt-yellow">0 UNID</span>
+                </div>
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <button onclick="clearCart()" class="px-3 py-2 text-xs font-semibold text-gray-400 hover:text-red-400">
+                        Vaciar Todo
+                    </button>
+                    <button onclick="sendWhatsAppQuote()" class="flex-1 sm:flex-none bg-green-500 hover:bg-green-600 text-black font-black px-4 py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Enviar Requerimiento Completo por WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="productDetailModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-3 sm:p-6" onclick="if(event.target === this) closeProductDetail()" aria-hidden="true">
+        <section class="product-detail-panel bg-dewalt-cardBg border border-dewalt-border w-full max-w-5xl rounded-xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col" role="dialog" aria-modal="true" aria-labelledby="productDetailName">
+            <header class="bg-black border-b border-dewalt-border px-4 sm:px-6 py-3 flex items-start justify-between gap-4">
+                <div class="min-w-0">
+                    <p id="productDetailSku" class="text-xs font-mono font-black text-dewalt-yellow"></p>
+                    <h2 id="productDetailName" class="text-base sm:text-xl font-black text-white leading-tight mt-1"></h2>
+                </div>
+                <button type="button" onclick="closeProductDetail()" class="shrink-0 w-9 h-9 rounded-lg text-gray-300 hover:text-white hover:bg-white/10" aria-label="Cerrar ficha del producto">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </header>
+            <div class="grid md:grid-cols-2 min-h-0 overflow-y-auto">
+                <div class="industrial-pattern min-h-64 md:min-h-[440px] flex items-center justify-center p-6 sm:p-10 border-b md:border-b-0 md:border-r border-dewalt-border">
+                    <img id="productDetailImage" src="" alt="" class="hidden max-h-80 md:max-h-[440px] w-full object-contain drop-shadow-2xl">
+                    <div id="productDetailImagePlaceholder" class="text-center text-dewalt-yellow/70">
+                        <i class="fa-solid fa-screwdriver-wrench text-6xl"></i>
+                        <p class="text-xs text-gray-500 mt-3">Imagen no disponible</p>
+                    </div>
+                </div>
+                <div class="p-4 sm:p-6 space-y-4 overflow-y-auto">
+                    <div id="productDetailSpecifications"></div>
+                    <div id="productDetailIncludes"></div>
+                    <div id="productDetailTechnologies"></div>
+                    <p id="productDetailAdminNote" class="hidden text-[11px] text-amber-300 border-t border-amber-500/30 pt-3">
+                        <i class="fa-solid fa-floppy-disk mr-1"></i> Los cambios se guardan automáticamente en este navegador.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="adminLoginModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] hidden items-center justify-center p-4" onclick="if(event.target === this) closeAdminLogin()" aria-hidden="true">
+        <section class="bg-dewalt-cardBg border border-dewalt-border w-full max-w-sm rounded-xl shadow-2xl overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="adminLoginTitle">
+            <header class="bg-black border-b border-dewalt-border px-5 py-4 flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] text-dewalt-yellow font-black uppercase tracking-wider">Acceso restringido</p>
+                    <h2 id="adminLoginTitle" class="text-lg text-white font-black mt-1">Modo administrador</h2>
+                </div>
+                <button type="button" onclick="closeAdminLogin()" class="w-9 h-9 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg" aria-label="Cerrar inicio de sesión"><i class="fa-solid fa-xmark"></i></button>
+            </header>
+            <form class="p-5 space-y-4" onsubmit="event.preventDefault(); submitAdminLogin()">
+                <label class="block text-xs font-bold text-gray-300" for="adminUsername">Usuario
+                    <input id="adminUsername" type="text" autocomplete="username" required class="mt-1.5 w-full p-2.5 bg-black border border-dewalt-border rounded-lg text-sm text-white focus:border-dewalt-yellow outline-none">
+                </label>
+                <label class="block text-xs font-bold text-gray-300" for="adminPassword">Contraseña
+                    <input id="adminPassword" type="password" autocomplete="current-password" required class="mt-1.5 w-full p-2.5 bg-black border border-dewalt-border rounded-lg text-sm text-white focus:border-dewalt-yellow outline-none">
+                </label>
+                <p id="adminLoginError" class="hidden text-xs text-red-400" role="alert">Usuario o contraseña incorrectos.</p>
+                <button type="submit" class="w-full bg-dewalt-yellow hover:bg-dewalt-darkYellow text-black font-black text-sm py-2.5 rounded-lg transition-colors">Ingresar</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        var categories = [
+            { id: 'MARTILLOS DEMOLEDORES', name: 'MARTILLOS DEMOLEDORES' },
+            { id: 'ESMERILES', name: 'ESMERILES' },
+            { id: 'TALADROS', name: 'TALADROS' },
+            { id: 'ATORNILLADORES', name: 'ATORNILLADORES' },
+            { id: 'LLAVES DE IMPACTO', name: 'LLAVES DE IMPACTO' },
+            { id: 'ROTOMARTILLOS', name: 'ROTOMARTILLOS' },
+            { id: 'TRONZADORAS', name: 'TRONZADORAS' },
+            { id: 'SIERRAS', name: 'SIERRAS' },
+            { id: 'LIJADORAS', name: 'LIJADORAS' },
+            { id: 'CEPILLO', name: 'CEPILLO' },
+            { id: 'RUTEADORA', name: 'RUTEADORA' },
+            { id: 'PISTOLAS DE CALOR', name: 'PISTOLAS DE CALOR' },
+            { id: 'PULIDORAS', name: 'PULIDORAS' },
+            { id: 'CLAVADORAS', name: 'CLAVADORAS' },
+            { id: 'SOPLADORAS', name: 'SOPLADORAS' },
+            { id: 'LASER', name: 'LASER' },
+            { id: 'KITS INALÁMBRICOS', name: 'KITS INALÁMBRICOS' },
+            { id: 'DISCOS', name: 'DISCOS' },
+            { id: 'CARGADORES', name: 'CARGADORES' },
+            { id: 'BATERÍAS', name: 'BATERÍAS' },
+            { id: 'GUARDAS', name: 'GUARDAS' }
+        ];
+
+        var initialProducts = [
+            { id: 1, category: 'DISCOS', subtype: 'Corte Metal & Inox', sku: 'DW44640', name: 'DISCO DE CORTE DEWALT 14" CORTE', description: 'Corte de Metal', inStock: true, image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=80' },
+            { id: 2, category: 'DISCOS', subtype: 'Corte Metal & Inox', sku: 'DW84407', name: 'DISCO DE CORTE DEWALT 4-1/2" (1.2MM) HP2', description: 'Corte de Metal e Inox', inStock: true, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&auto=format&fit=crop&q=80' },
+            { id: 3, category: 'DISCOS', subtype: 'Corte Metal & Inox', sku: 'DW84406', name: 'DISCO DE CORTE DEWALT 4-1/2" (1/8") HP2', description: 'Corte de Metal e Inox', inStock: true, image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=80' },
+            { id: 4, category: 'DISCOS', subtype: 'Corte Metal & Inox', sku: 'DW44618', name: 'DISCO DE CORTE DEWALT 4-1/2" (1.2MM)', description: 'Corte de Metal e Inox', inStock: true, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&auto=format&fit=crop&q=80' },
+            { id: 5, category: 'DISCOS', subtype: 'Corte Metal & Inox', sku: 'DW44530', name: 'DISCO DE CORTE DEWALT 4-1/2"', description: 'Corte de Metal', inStock: true, image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=80' },
+            { id: 6, category: 'DISCOS', subtype: 'Corte Metal & Inox', sku: 'DW44602', name: 'DISCO DE CORTE DEWALT 7"', description: 'Corte de Metal e Inox', inStock: true, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&auto=format&fit=crop&q=80' },
+            { id: 7, category: 'DISCOS', subtype: 'Corte Metal & Inox', sku: 'DW84701', name: 'DISCO DE CORTE DEWALT 7" (1.6MM) HP2', description: 'Corte de Metal e Inox', inStock: true, image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=80' },
+            { id: 8, category: 'DISCOS', subtype: 'Corte Metal & Inox', sku: 'DW84704', name: 'DISCO DE CORTE DEWALT 7" CORTE (1/8") HP2', description: 'Corte de Metal e Inox', inStock: true, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&auto=format&fit=crop&q=80' },
+            { id: 9, category: 'DISCOS', subtype: 'Corte Metal & Inox', sku: 'DW44560', name: 'DISCO DE CORTE DEWALT 7"', description: 'Corte de Metal', inStock: true, image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=80' },
+            { id: 10, category: 'DISCOS', subtype: 'Corte Metal & Inox', sku: 'DW44600', name: 'DISCO DE CORTE DEWALT 9"', description: 'Corte de Metal', inStock: true, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&auto=format&fit=crop&q=80' },
+            { id: 11, category: 'DISCOS', subtype: 'Desbaste', sku: 'DW44540', name: 'DISCO DE DESBASTE DEWALT 4-1/2"', description: '', inStock: true, image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=80' },
+            { id: 12, category: 'DISCOS', subtype: 'Desbaste', sku: 'DW44580', name: 'DISCO DE DESBASTE DEWALT 7"', description: '', inStock: true, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&auto=format&fit=crop&q=80' },
+            { id: 13, category: 'DISCOS', subtype: 'Desbaste', sku: 'DW44610', name: 'DISCO DE DESBASTE DEWALT 9"', description: '', inStock: true, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=500&auto=format&fit=crop&q=80' }
+        ];
+
+        var catalogItems = [
+            ['MARTILLOS DEMOLEDORES', 'D25810K', 'MARTILLO DEMOLEDOR SDS MAX'],
+            ['MARTILLOS DEMOLEDORES', 'D25832K', 'MARTILLO DEMOLEDOR SDS MAX DE 7.5 KG'],
+            ['MARTILLOS DEMOLEDORES', 'D25881K', 'MARTILLO DEMOLEDOR SDS MAX DE 10 KG'],
+            ['MARTILLOS DEMOLEDORES', 'D25911K', 'MARTILLO DEMOLEDOR SDS DE 11 KG'],
+            ['MARTILLOS DEMOLEDORES', 'DCH911B', 'MARTILLO DEMOLEDOR SDS MAX DE 11KG DE 60V MAX'],
+            ['MARTILLOS DEMOLEDORES', 'D25966', 'MARTILLO DEMOLEDOR HEXAGONAL DE 15 KG'],
+            ['MARTILLOS DEMOLEDORES', 'DCH966B', 'MARTILLO DEMOLEDOR SDS MAX DE 15 KG DE 60V MAX'],
+            ['MARTILLOS DEMOLEDORES', 'D25980', 'MARTILLO DEMOLEDOR HEXAGONAL DE 1-1/8” V'],
+            ['ESMERILES', 'DW750', 'MINI-ESMERIL ANGULAR DE 4-1/2”'],
+            ['ESMERILES', 'DWE4020', 'MINI-ESMERIL ANGULAR DE 4-1/2”'],
+            ['ESMERILES', 'DWE4120', 'MINI-ESMERIL ANGULAR DE 4-1/2”'],
+            ['ESMERILES', 'DWE4118', 'MINI-ESMERIL ANGULAR DE 4-1/2”'],
+            ['ESMERILES', 'DWE4212', 'MINI-ESMERIL ANGULAR DE 4-1/2”'],
+            ['ESMERILES', 'DWE4314', 'MINI-ESMERIL ANGULAR DE 4-1/2”'],
+            ['ESMERILES', 'DWE4336', 'MINI-ESMERIL ANGULAR DE 4-1/2”'],
+            ['ESMERILES', 'DWE4324', 'MINI-ESMERIL ANGULAR DE 4-1/2”'],
+            ['ESMERILES', 'DWE491', 'ESMERIL ANGULAR DE 7”'],
+            ['ESMERILES', 'DWE490', 'ESMERIL ANGULAR DE 9”'],
+            ['ESMERILES', 'DWE497', 'ESMERIL ANGULAR DE 7” DE ALTO RENDIMIENTO'],
+            ['ESMERILES', 'DWE496', 'ESMERIL ANGULAR DE 9” DE ALTO RENDIMIENTO'],
+            ['ESMERILES', 'DWE4557', 'ESMERIL ANGULAR DE 7” COMANDO'],
+            ['ESMERILES', 'DWE4577', 'ESMERIL ANGULAR DE 7” COMANDO ELECTRONICO'],
+            ['ESMERILES', 'DWE4579', 'ESMERIL ANGULAR DE 9” COMANDO ELECTRONICO'],
+            ['ESMERILES', 'DWE752', 'ESMERIL DE BANCO 6”'],
+            ['ESMERILES', 'DWE4997NVS', 'ESMERIL RECTO'],
+            ['ESMERILES', 'DCG426M2', 'ESMERIL RECTO CUELLO LARGO 1/4” 20V XR'],
+            ['ESMERILES', 'DCG413B', 'ESMERIL ANGULAR 4-1/2” 20V XR BARETOOL'],
+            ['ESMERILES', 'DCG418T2', 'KIT ESMERIL ANGULAR 4-1/2” 60V FLEXVOLT BRUSHLESS'],
+            ['TALADROS', 'DCD700C2', 'TALADRO/ATORNILLADOR DE 12V MAX'],
+            ['TALADROS', 'DCD708D2', 'TALADRO/ATORNILLADOR DE 20V MAX'],
+            ['TALADROS', 'DCD7771D2', 'TALADRO ATORNILLADOR DE 20V MAX'],
+            ['TALADROS', 'DCD716D2', 'TALADRO PERCUTOR 3/8” 12V MAX'],
+            ['TALADROS', 'DCD709D2', 'TALADRO PERCUTOR 1/2" 20V XR ATOMIC DEWALT'],
+            ['TALADROS', 'DCD7781D2', 'TALADRO PERCUTOR ATORNILLADOR INALAMBRICO 20V MAX'],
+            ['TALADROS', 'DCD796D2', 'TALADRO PERCUTOR DE 20V MAX'],
+            ['TALADROS', 'DCD996P2T', 'TALADRO PERCUTOR 20V MAX'],
+            ['TALADROS', 'DWD024', 'TALADRO PERCUTOR DE 1/2”'],
+            ['TALADROS', 'DW508S', 'TALADRO PERCUTOR DE 1/2"'],
+            ['TALADROS', 'DWD520', 'TALADRO PERCUTOR DE ALTO TORQUE'],
+            ['TALADROS', 'DCD999B', 'TALADRO PERCUTOR 1/2” 20V XR 112 NM BARETOOL'],
+            ['TALADROS', 'DCD1007B', 'TALADRO PERCUTOR 1/2" 20V XR 170NM BARETOOL'],
+            ['TALADROS', 'DW130V', 'TALADRO DE 1/2" MANGO DE TIPO ESPALDA'],
+            ['TALADROS', 'DWE1622K', 'TALADRO DE BASE MAGNETICA'],
+            ['TALADROS', 'D21585', 'TALADRO DIAMANTE'],
+            ['TALADROS', 'DCD130B', 'TALADRO MEZCLADORA FLEXVOLT 60V MAX'],
+            ['ATORNILLADORES', 'DCF7871D2', 'ATORNILLADOR DE IMPACTO DE 20V MAX'],
+            ['ATORNILLADORES', 'DCF809D2', 'ATORNILLADOR DE IMPACTO 1/4" 20V XR'],
+            ['ATORNILLADORES', 'DCF887M2', 'ATORNILLADOR DE IMPACTO 1/4" 20V'],
+            ['LLAVES DE IMPACTO', 'DCF889M2', 'LLAVE DE IMPACTO CON DETENCION DE 20V MAX'],
+            ['LLAVES DE IMPACTO', 'DCF897B', 'LLAVE DE IMPACTO 3/4" 20V MAX XR BARETOOL'],
+            ['LLAVES DE IMPACTO', 'DCF899B', 'LLAVE DE IMPACTO 1/2” 20V XR 950NM BARETOOL'],
+            ['LLAVES DE IMPACTO', 'DCF900B', 'LLAVE DE IMPACTO 1/2" 20V XR'],
+            ['KITS INALÁMBRICOS', 'DCK299H2', 'KIT TALADRO PERCUTOR INALAMBRICO 1/2" + ATORNILLADOR DE IMPACTO 1/4"'],
+            ['KITS INALÁMBRICOS', 'DCK260D1P1T', 'KIT ATORNILLADOR DE IMPACTO Y ROTOMARTILLO SDS PLUS DE 1”'],
+            ['KITS INALÁMBRICOS', 'DCK2009P2T', 'KIT TALADRO PERCUTOR Y ESMERIL ANGULAR CON MANGO EN D'],
+            ['KITS INALÁMBRICOS', 'DCK223', 'KIT TALADRO PERCUTOR/ATORNILLADOR 1/2" Y ATORNILLADOR DE IMPACTO 1/4"'],
+            ['KITS INALÁMBRICOS', 'DCK200ME2GT', 'KIT MCLAREN TALADRO/ATORNILLADOR 1/2" ATORNILLADOR DE IMPACTO 1/4" CARGADOR DEWALT'],
+            ['CARGADORES', 'DCB1104', 'CARGADOR DE BATERÍA'],
+            ['CARGADORES', 'DCB118', 'CARGADOR DE BATERÍA'],
+            ['CARGADORES', 'DCB1106', 'CARGADOR DE BATERÍA'],
+            ['CARGADORES', 'DCB107', 'CARGADOR DE BATERÍA'],
+            ['BATERÍAS', 'DCB201', 'BATERÍA'],
+            ['BATERÍAS', 'DCB203', 'BATERÍA'],
+            ['BATERÍAS', 'DCB200', 'BATERÍA'],
+            ['BATERÍAS', 'DCB204', 'BATERÍA'],
+            ['BATERÍAS', 'DCB205', 'BATERÍA'],
+            ['BATERÍAS', 'DCB606', 'BATERÍA'],
+            ['BATERÍAS', 'DCB609', 'BATERÍA'],
+            ['BATERÍAS', 'DCB615', 'BATERÍA'],
+            ['ROTOMARTILLOS', 'DCH172B', 'ROTOMARTILLO DE 5/8” DE 20V MAX SDS PLUS'],
+            ['ROTOMARTILLOS', 'D25133K', 'ROTOMARTILLO SDS PLUS DE 26MM'],
+            ['ROTOMARTILLOS', 'D25260K', 'ROTOMARTILLO SDS PLUS DE 26MM'],
+            ['ROTOMARTILLOS', 'D25333K', 'ROTOMARTILLO SDS PLUS DE 30MM'],
+            ['ROTOMARTILLOS', 'D25773K', 'ROTOMARTILLO SDS MAX DE 52MM'],
+            ['ROTOMARTILLOS', 'DCH133M2', 'ROTOMARTILLO SDS PLUS 20V MAX'],
+            ['ROTOMARTILLOS', 'DCH481X2', 'ROTOMARTILLO SDS MAX 60V XR'],
+            ['ROTOMARTILLOS', 'DCH773Y2', 'ROTOMARTILLO SDS MAX 60V FLEXVOLT'],
+            ['TRONZADORAS', 'D28730', 'TRONZADORA DE 14”'],
+            ['TRONZADORAS', 'D28715', 'TRONZADORA DE 14” DE CORTE RAPIDO'],
+            ['SIERRAS', 'DW304PK', 'SIERRA SABLE 1-1/8”'],
+            ['SIERRAS', 'DCS389', 'SIERRA RECIPROCANTE 60V FLEXVOLT'],
+            ['SIERRAS', 'DWE5615-B2', 'SIERRA CIRCULAR 7-1/4”'],
+            ['SIERRAS', 'DWE575', 'SIERRA CIRCULAR 7-1/4”'],
+            ['SIERRAS', 'DW300', 'SIERRA CALADORA'],
+            ['SIERRAS', 'DW341', 'SIERRA CALADORA'],
+            ['SIERRAS', 'DW331K', 'SIERRA CALADORA'],
+            ['SIERRAS', 'DCS331B', 'SIERRA CALADORA 20V'],
+            ['SIERRAS', 'DCS570B', 'SIERRA CIRCULAR INALAMBRICA 7-1/4” 20V XR'],
+            ['SIERRAS', 'DCS578B', 'SIERRA CIRCULAR 7-1/4” 60V XR FLEXVOLT'],
+            ['SIERRAS', 'DCS692B', 'CORTADORA DE CONCRETO 9” 60V'],
+            ['SIERRAS', 'DWE7492-B2', 'SIERRA DE MESA 2000W'],
+            ['SIERRAS', 'DWE7470', 'SIERRA DE MESA DE 10”'],
+            ['SIERRAS', 'DWS713', 'SIERRA INGLETEADORA DE 10”'],
+            ['SIERRAS', 'DWS760', 'SIERRA INGLETEADORA TELESCOPICA 12”'],
+            ['SIERRAS', 'DCCS620B', 'MOTOSIERRA INALAMBRICA 12” 20V XR'],
+            ['LIJADORAS', 'DWE6411', 'LIJADORA DE PALMA 1/4”'],
+            ['LIJADORAS', 'DWE6421', 'LIJADORA EXCENTRICA 5”'],
+            ['LIJADORAS', 'DWP352VS', 'LIJADORA DE BANDA'],
+            ['LIJADORAS', 'DCW210B', 'LIJADORA ROTO ORBITAL INALAMBRICA 5”'],
+            ['CEPILLO', 'DCP580B', 'CEPILLO INALAMBRICO 20V MAX XR BRUSHLESS'],
+            ['RUTEADORA', 'DWE625', 'RUTEADORA ELECTRONICA'],
+            ['RUTEADORA', 'DCW600B', 'RUTEADORA FRESADORA 1/4” 20V XR BARETOOL DEWALT'],
+            ['PISTOLAS DE CALOR', 'DCE530B', 'PISTOLA DE CALOR DECAPADOR 20V 990°'],
+            ['PISTOLAS DE CALOR', 'D26411', 'PISTOLA DE CALOR'],
+            ['PISTOLAS DE CALOR', 'D26414', 'PISTOLA DE CALOR CON PANTALLA LCD'],
+            ['PULIDORAS', 'DWP849X', 'PULIDORA LIJADORA ANGULAR 7”'],
+            ['PULIDORAS', 'DCM849B', 'PULIDORA ORBITAL 7” 20V MAX XR BARETOOL'],
+            ['CLAVADORAS', 'DCN680B', 'CLAVADORA 5/8”- 2 1/8” 20V'],
+            ['SOPLADORAS', 'DWB800', 'SOPLADORA'],
+            ['GUARDAS', 'DWE46152', 'GUARDA PARA ASPIRAR POLVO DE 5”'],
+            ['GUARDAS', 'DWE46170', 'GUARDA PARA ASPIRAR POLVO DE 7”'],
+            ['LASER', 'DW0822', 'NIVEL LASER CRUZ Y PUNTO DE PLOMADA LUZ ROJA'],
+            ['LASER', 'DCE0822D1G', 'NIVEL LASER EN CRUZ VERDE 12V 20 MTS'],
+            ['LASER', 'DCE0811D1G', 'NIVEL LASER 360° 12V LUZ VERDE 15MTS'],
+            ['LASER', 'DCE089D1G', 'NIVEL LASER 360° LUZ VERDE 30MTS 12V'],
+            ['LASER', 'DW0892G', 'DETECTOR DE LINEAS LASER VERDE A 50 MTS'],
+            ['LASER', 'DW0881T', 'TRIPODE DE NIVEL LASER']
+        ];
+
+        for (var catalogIndex = 0; catalogIndex < catalogItems.length; catalogIndex++) {
+            var catalogItem = catalogItems[catalogIndex];
+            initialProducts.push({
+                id: initialProducts.length + 1,
+                category: catalogItem[0],
+                subtype: '',
+                sku: catalogItem[1],
+                name: catalogItem[2],
+                description: '',
+                specifications: '',
+                includes: '',
+                technologies: '',
+                inStock: true,
+                image: ''
+            });
+        }
+
+        var productDetailsBySku = {
+            'D25810K': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1050 W\nEncastre: SDS MAX\nGolpes por minuto: 0 - 3150 GPM\nEnergía de impacto: 7.1 J (EPTA 05/2009)\nMedición de vibración: 8.5 m/s² (1.5 m/s²)\nPosiciones de velocidad: 12\nPeso: 12.5 lbs (5.7 kg)',
+                includes: '(1) MARTILLO DEMOLEDOR\n(1) EMPUÑADURA LATERAL\n(1) MALETA PLÁSTICA',
+                technologies: 'SHOCKS\nEMPUÑADURA ANTI-VIBRACIÓN (AVC) RECUBIERTA DE GOMA\nPERFORM & PROTECT\nCORDED'
+            },
+            'DW750': {
+                catalogDetailsVersion: 2,
+                specifications: '',
+                includes: '',
+                technologies: ''
+            },
+            'DWE4020': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 800 W\nVelocidad: 12000 RPM\nDiámetro del disco: 4-1/2” (115 mm)\nEstilo de interruptor: DESLIZANTE\nPeso: 1.8 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: ''
+            },
+            'DWE4120': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 900 W\nVelocidad: 3000-11000 RPM\nDiámetro del disco: 4-1/2” (115 mm)\nEstilo de interruptor: PALETA\nPeso: 1.9 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: ''
+            },
+            'DWE4118': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 750 W\nVelocidad: 11000 RPM\nDiámetro del disco: 4-1/2” (115 mm)\nEstilo de interruptor: DESLIZANTE\nPeso: 1.8 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: ''
+            },
+            'DWE4212': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1200 W\nVelocidad: 11000 RPM\nDiámetro del disco: 4-1/2” (115 mm)\nEstilo de interruptor: DESLIZANTE\nPeso: 2.1 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: ''
+            },
+            'DWE4314': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1500 W\nVelocidad: 11000 RPM\nDiámetro del disco: 4-1/2” (115 mm)\nEstilo de interruptor: PALETA\nPeso: 2.5 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: 'PERFORM & PROTECT\nViene sin botón de traba.'
+            },
+            'DWE4336': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1500 W\nVelocidad: 2800-11000 RPM\nDiámetro del disco: 4-1/2” y 5” (115 mm y 125 mm)\nEstilo de interruptor: DESLIZANTE\nPeso: 2.5 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: 'PERFORM & PROTECT'
+            },
+            'DWE4324': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1700 W\nVelocidad: 11000 RPM\nDiámetro del disco: 4-1/2” (115 mm)\nEstilo de interruptor: PALETA\nPeso: 2.4 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: 'PERFORM & PROTECT\nBRUSHLESS MOTOR'
+            },
+            'DWE491': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2200 W\nVelocidad: 8500 RPM\nDiámetro del disco: 7” (180 mm)\nEstilo de interruptor: DESLIZANTE\nPeso: 5 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: ''
+            },
+            'DWE490': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2200 W\nVelocidad: 6500 RPM\nDiámetro del disco: 9” (230 mm)\nEstilo de interruptor: DESLIZANTE\nPeso: 5.5 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: ''
+            },
+            'DWE497': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2600 W\nVelocidad: 8500 RPM\nVoltaje: 220 V\nDiámetro del disco: 7” (180 mm)\nPeso: 4.8 kg',
+                includes: '(1) ESMERIL\n(1) GUARDA DE PROTECCIÓN\n(1) EMPUÑADURA LATERAL\n(1) LLAVE\n(2) PLATINAS DE TUERCAS',
+                technologies: ''
+            },
+            'DWE496': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2600 W\nVelocidad: 6500 RPM\nVoltaje: 220 V\nDiámetro del disco: 9” (230 mm)\nPeso: 5.5 kg',
+                includes: '(1) ESMERIL\n(1) GUARDA DE PROTECCIÓN\n(1) EMPUÑADURA LATERAL\n(1) LLAVE\n(2) PLATINAS DE TUERCAS',
+                technologies: ''
+            },
+            'DWE4557': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2400 W\nVelocidad: 8500 RPM\nDiámetro del disco: 7” (180 mm)\nProtección de abrasión: \nPeso: 5.4 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: 'E-CLUTCH'
+            },
+            'DWE4577': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2700 W\nVelocidad: 8500 RPM\nDiámetro del disco: 7” (180 mm)\nEstilo de interruptor: 2 DEDOS\nPeso: 5.6 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: 'E-CLUTCH'
+            },
+            'DWE4579': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2700 W\nVelocidad: 6500 RPM\nDiámetro del disco: 9” (230 mm)\nEstilo de interruptor: 2 DEDOS\nPeso: 5.9 kg',
+                includes: '(1) ESMERIL\n(1) EMPUÑADURA LATERAL\n(1) DISCO DE DESBASTE\n(1) AJUSTE DE LLAVE',
+                technologies: 'E-CLUTCH'
+            },
+            'DWE752': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 375 W\nVelocidad: 3450 RPM\nDiámetro del disco: 6” (152 mm)\nEstilo de interruptor: \nPeso: 13.8 kg',
+                includes: '(1) ESMERIL\n(2) APOYO PIEZAS\n(2) PROTECTORES PLÁSTICOS\n(2) RUEDAS ABRASIVAS DE 6”',
+                technologies: ''
+            },
+            'DWE4997NVS': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1300 W\nVelocidad: 6500-28000 RPM\nPeso: 1.9 kg',
+                includes: '',
+                technologies: 'E-CLUTCH\nPERFORM & PROTECT\nBRUSHLESS MOTOR'
+            },
+            'DCG426M2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20V MAX\nDiámetro de collet: 1/4”\nLongitud de la herramienta: \nCortes por minuto: \nPeso: 2.18 kg',
+                includes: '(1) AMOLADORA DE MATRICES\n(1) BOLSA\n(2) LLAVES\n(2) BATERÍAS\n(1) CARGADOR',
+                technologies: 'PERFORM & PROTECT\nBRUSHLESS MOTOR'
+            },
+            'DCG413B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nDiámetro del disco: 4-1/2” (115 mm)\nVelocidad de rotación: 9000 RPM\nVelocidad variable: NO\nPeso: 1.7 kg',
+                includes: '(1) MANGO LATERAL\n(1) LLAVE DE AJUSTE\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: 'PERFORM & PROTECT\nBRUSHLESS MOTOR'
+            },
+            'DCG418T2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 60 V\nVelocidad máxima de rotación: 9000 RPM\nDiámetro del disco: 4-1/2” (115 mm) y 5” (125 mm)\nMaterial de corte: CONCRETO/METAL/MÁRMOL/PLÁSTICO\nAmperaje de batería: 6.0 Ah',
+                includes: '(2) BATERÍAS 6.0 Ah\n(1) CARGADOR RÁPIDO DCB118\n(1) GUARDA\n(1) BOLSA',
+                technologies: 'PERFORM & PROTECT\nBRUSHLESS MOTOR'
+            },
+            'DCD700C2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 12 V\nPotencia máxima: 10H - 1.3 Ah\nTamaño de mandril: 3/8” (10 mm)\nVelocidad sin carga: 0-400 / 0-1500 RPM\nTorque: 24 Nm\nPeso: 1 kg',
+                includes: '(1) CARGADOR\n(2) BATERÍAS\n(1) CAJA PLÁSTICA',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCD708D2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V MAX\nCapacidad de mandril: 1/2” (13 mm)\nVelocidad sin carga: 0-450 / 0-1650 RPM\nPosiciones de torque: 15\nTorque: 65 Nm\nPeso: 1.1 kg',
+                includes: '(2) BATERÍAS DE 2.0 Ah\n(1) CARGADOR\n(1) BOLSO',
+                technologies: 'ATOMIC COMPACT SERIES'
+            },
+            'DCD7771D2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tamaño de mandril: 1/2” (13 mm)\nVelocidad: 0-500 / 0-1750 RPM\nPotencia: 340 UWO\nTorque: 65 Nm\nCapacidad madera: 25 mm (1”)\nCapacidad metal: 13 mm (1/2”)',
+                includes: '(2) BATERÍAS DE 2.0 Ah\n(1) CARGADOR DCB107\n(1) CAJA PLÁSTICA',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCD716D2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 12 V MAX\nBatería: ION-LI 2 Ah\nCapacidad en madera: 20 mm\nCapacidad en mandril: 3/8” (10 mm)\nVelocidad sin carga: 0-400 / 0-1500 RPM\nTorque: 20 Nm\nPeso: 1.1 kg',
+                includes: '(2) BATERÍAS DE 2.0 Ah\n(1) CARGADOR\n(1) KITBAG',
+                technologies: ''
+            },
+            'DCD709D2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nCapacidad de mandril: 1/2” (13 mm)\nVelocidades mecánicas: 2 MARCHAS\nImpactos por minuto: 0-28500 GPM\nTorque: 65 Nm\nVelocidad de rotación: 0-450 / 0-1650 RPM',
+                includes: '(2) BATERÍAS DE 20 V MAX\n(1) CARGADOR DCB107\n(1) CLIP DE CINTURÓN\n(1) BOLSA DE TRANSPORTE',
+                technologies: 'ATOMIC'
+            },
+            'DCD7781D2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tamaño de mandril: 1/2” (13 mm)\nVelocidad: 0-500 / 0-1750 RPM\nPotencia: 340 UWO\nTorque: 65 Nm\nGolpes por minuto: 0-8500 / 0-29750 IPM\nCapacidad metal: 13 mm (1/2”)',
+                includes: '(2) BATERÍAS DE 2.0 Ah\n(1) CARGADOR DCB107\n(1) CAJA PLÁSTICA',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCD796D2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tamaño de mandril: 1/2” (13 mm)\nVelocidad: 0-550 / 0-2000 RPM\nPotencia: 460 UWO\nGolpes por minuto: 0-34000\nPosiciones: 14\nPeso: 1.6 kg',
+                includes: '(2) BATERÍAS DE 2.0 Ah\n(1) CARGADOR\n(1) CLIP MAGNÉTICO',
+                technologies: ''
+            },
+            'DCD996P2T': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nCapacidad de mandril: 1/2” (13 mm)\nVelocidad de rotación: 0-450 / 0-1300 / 0-2000 RPM\nTorque: 95 Nm\nVelocidad de impacto: 6000 / 8500 / 25500 / 38250 GPM\nTipo de uso: INDUSTRIAL',
+                includes: '(2) BATERÍAS DE 5.0 Ah 20 V\n(1) CARGADOR DCB1104\n(1) GANCHO DE CINTURÓN\n(1) ASA LATERAL DE 360°',
+                technologies: ''
+            },
+            'DWD024': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 650 W\nVelocidad sin carga: 0-2800 RPM\nGolpes por minuto: 0-47600 GPM\nCapacidad de mandril: 1/2” (13 mm)\nPeso: 1.8 kg',
+                includes: '(1) LLAVE DE MANDRIL\n(1) EMPUÑADURA',
+                technologies: ''
+            },
+            'DW508S': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 800 W\nVelocidad sin carga: 0-3000 RPM\nGolpes por minuto: 0-51000 GPM\nCapacidad de mandril: 1/2” (13 mm)\nPeso: 1.9 kg',
+                includes: '(1) LLAVE DE MANDRIL\n(1) EMPUÑADURA\n(1) BARRA DE PROFUNDIDAD',
+                technologies: ''
+            },
+            'DWD520': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1100 W\nVelocidad sin carga: 0-1200 / 0-3500 RPM\nGolpes por minuto: 0-56000 GPM\nCapacidad de mandril: 1/2” (13 mm)\nPeso: 2.7 kg',
+                includes: '(1) LLAVE DE MANDRIL\n(1) EMPUÑADURA\n(1) BARRA DE PROFUNDIDAD',
+                technologies: ''
+            },
+            'DCD999B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nPeso: 2.2 kg\nVelocidad de rotación: 1300 / 2000 RPM\nTamaño de mandril: 1/2” (13 mm)\nVelocidad de impacto: 0-8500 / 0-25500 / 0-38250 GPM\nCapacidad de perforación máxima en mampostería: 13 mm',
+                includes: '(1) TALADRO PERCUTOR ATORNILLADOR\n(1) EMPUÑADURA AUXILIAR\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCD1007B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nTipo de uso: INDUSTRIAL\nVelocidad de rotación: 0-450 / 1200 / 2000 RPM\nTamaño de mandril: 1/2” (13 mm)\nVelocidad de impacto: 0-8500 / 0-25500 / 0-38250 GPM\nTorque: 170 Nm\nPeso: 1.87 kg',
+                includes: '(1) MANGO LATERAL\n(1) GANCHO PARA CINTURÓN\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: ''
+            },
+            'DW130V': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 410 W\nVelocidad sin carga: 0-2500 RPM\nCapacidad de mandril: ESTÁNDAR\nPeso: 1.6 kg',
+                includes: '(1) LLAVE DE MANDRIL\n(1) EMPUÑADURA EN D\n(1) EMPUÑADURA LATERAL 2 POSICIONES',
+                technologies: ''
+            },
+            'DWE1622K': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1200 W\nVelocidad sin carga: 300 / 450 RPM\nCapacidad de mandril: WELDON (19 mm)\nFuerza del magneto: 1.6\nInterruptor con bloqueo de voltaje: SÍ\nPeso: 14.6 kg',
+                includes: '(1) LLAVE ALLEN DE AJUSTE DE COLUMNA\n(1) ADAPTADOR PARA MANDRIL\n(1) MANDRIL 16 mm\n(1) MANILLAR LATERAL\n(1) CADENA DE SUJECIÓN A ESTRUCTURA',
+                technologies: ''
+            },
+            'D21585': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2500 W\nVelocidad sin carga: 500 / 1200 / 2000 RPM\nCapacidad de mandril: 1/4” (6 mm)\nCapacidad en concreto: 10” (254 mm)\nCapacidad en mampostería: 12” (300 mm)\nPeso: 11.2 kg',
+                includes: '',
+                technologies: ''
+            },
+            'DCD130B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 60 V\nPeso: 3.7 kg\nTamaño de mandril: 1/2” (13 mm)\nVelocidad de rotación: 0-600 RPM\nVelocidad variable: SÍ',
+                includes: '(1) ASA LATERAL\n(1) PORTALLAVES Y LLAVE DE MANDRIL\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: ''
+            },
+            'DCF7871D2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Mandril hexagonal: 1/4” (6.35 mm)\nVelocidad: 0-2800 RPM\nPotencia: 280 UWO\nTorque: 170 Nm\nGolpes por minuto: 0-3200 IPM\nLuz LED: SÍ',
+                includes: '(2) BATERÍAS DE 2.0 Ah\n(1) CARGADOR DCB107\n(1) CAJA PLÁSTICA',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCF809D2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nTipo de uso: INDUSTRIAL\nEncastre: 1/4” HEX\nTorque: 170 Nm\nVelocidad de impacto: 0-3200 GPM\nVelocidad de rotación: 0-2800 RPM',
+                includes: '(2) BATERÍAS DE 2.0 Ah\n(1) CARGADOR DCB107\n(1) BOLSO',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCF887M2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Amperaje: 6.2 Ah\nPotencia: 540 W\nVelocidad sin carga: 0-250 RPM\nEmbrague: ESTÁNDAR\nTorque: 15 Nm\nPeso: 1.6 kg',
+                includes: '(1) ATORNILLADOR DE IMPACTO DCF887\n(2) BATERÍAS 4.0 Ah\n(1) CARGADOR MULTIVOLTAJE XR\n(1) GANCHO\n(1) MALETÍN',
+                technologies: ''
+            },
+            'DCF889M2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tamaño de cuadrante: 1/2” (13 mm)\nVelocidad: 0-1500 RPM\nImpacto por minuto: 0-2300 IPM\nTorsión máxima: 540 Nm\nPeso: 2.5 kg\nEncastre: 1/2”',
+                includes: '(2) BATERÍAS DE 4 Ah\n(1) CARGADOR',
+                technologies: ''
+            },
+            'DCF897B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Torque: 130 Nm / 400 Nm / 950 Nm\nVelocidad: 0-400 / 0-1200 / 0-1900 RPM\nVelocidad de impacto: 0-2400 IPM\nTipo: BARETOOL\nVoltaje: 20 V\nEncastre: 3/4” (19 mm)',
+                includes: '(1) LLAVE DE IMPACTO DCF897B\nNO INCLUYE BATERÍA NI CARGADOR',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCF899B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nTipo de uso: INDUSTRIAL\nEncastre: 1/2” (12.7 mm)\nTipo: BARETOOL\nVelocidad: 0-400 / 0-1200 / 0-1900 RPM\nVelocidad de impacto: 2400 IPM',
+                includes: '(1) LLAVE DE IMPACTO DCF899B\nNO INCLUYE BATERÍA NI CARGADOR',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCF900B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nTipo de uso: INDUSTRIAL\nEncastre: 1/2” (13 mm)\nVelocidad de rotación: 650 / 1040 / 2300 RPM\nVelocidad de impacto: 0-2200 GPM\nTorque: 130 Nm / 813 Nm / 1396 Nm',
+                includes: '(1) LLAVE DE IMPACTO DCF900\nNO INCLUYE BATERÍA NI CARGADOR',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCB201': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo: ION-LI\nVoltaje: 20 V MAX\nAmperaje: 1.5 Ah\nCaracterísticas: COMPACTA',
+                includes: '',
+                technologies: ''
+            },
+            'DCB203': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo: ION-LI\nVoltaje: 20 V MAX\nAmperaje: 2.0 Ah\nCaracterísticas: DURAC. EXTEND.',
+                includes: '',
+                technologies: ''
+            },
+            'DCB200': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo: ION-LI\nVoltaje: 20 V MAX\nAmperaje: 3.0 Ah\nCaracterísticas: COMPACTA',
+                includes: '',
+                technologies: ''
+            },
+            'DCB204': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo: ION-LI\nVoltaje: 20 V MAX\nAmperaje: 4.0 Ah\nCaracterísticas: DURAC. EXTEND.',
+                includes: '',
+                technologies: ''
+            },
+            'DCB205': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo: ION-LI\nVoltaje: 20 V MAX\nAmperaje: 5.0 Ah\nCaracterísticas: INDICADOR LED',
+                includes: '',
+                technologies: ''
+            },
+            'DCB606': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo: ION-LI\nVoltaje: 20 V MAX\nAmperaje: 6.0 Ah\nCaracterísticas: FLEXVOLT',
+                includes: '',
+                technologies: ''
+            },
+            'DCB609': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo: ION-LI\nVoltaje: 20 V MAX\nAmperaje: 9.0 Ah\nCaracterísticas: FLEXVOLT',
+                includes: '',
+                technologies: ''
+            },
+            'DCB615': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo: ION-LI\nVoltaje: 20 / 60 V MAX\nAmperaje: 15.0 Ah\nCaracterísticas: FLEXVOLT',
+                includes: '',
+                technologies: ''
+            },
+            'DCH172B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Energía de impacto: 1.4 J\nVelocidad sin carga: 0-1060 RPM\nImpactos por minuto: 0-4980 IPM\nRango de taladro óptimo: 5/32”-3/8” (4-10 mm)\nMedida de vibración: 8.8 m/s²\nLargo de herramienta: 10.43” (265 mm)\nPeso: 2 kg',
+                includes: '(1) ROTOMARTILLO DCH172\n(1) MANGO LATERAL DE 360°\n(1) VARILLA DE PROFUNDIDAD\n(1) CLIP PARA CINTURÓN\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: 'ATOMIC COMPACT SERIES\nPERFORM & PROTECT\nAVC'
+            },
+            'D25133K': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 950 W\nEnergía de impacto: 2.9 J\nVelocidad sin carga: 0-1500 RPM\nGolpes por minuto: 0-5500 GPM\nPeso: 2.3 kg',
+                includes: '(1) EMPUÑADURA LATERAL\n(1) EMPUÑADURA LATERAL 2 POSICIONES',
+                technologies: ''
+            },
+            'D25260K': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 800 W\nEnergía de impacto: 2.9 J\nVelocidad sin carga: 0-1500 RPM\nGolpes por minuto: 0-5550 GPM\nPeso: 2.7 kg',
+                includes: '(1) EMPUÑADURA LATERAL\n(1) BARRA DE PROFUNDIDAD',
+                technologies: ''
+            },
+            'D25333K': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 950 W\nEnergía de impacto: 3.5 J\nVelocidad sin carga: 0-1150 RPM\nGolpes por minuto: 0-5200 GPM\nPeso: 3.7 kg',
+                includes: '(1) MALETA PLÁSTICA\n(1) EMPUÑADURA LATERAL',
+                technologies: 'PERFORM & PROTECT\nAVC'
+            },
+            'D25773K': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1700 W\nEnergía de impacto: 19.4 J\nVelocidad sin carga: 290 RPM\nGolpes por minuto: 1105-2210 GPM\nPeso: 10.5 kg',
+                includes: '(1) CARGADOR\n(1) CAJA PLÁSTICA',
+                technologies: 'PERFORM & PROTECT\nAVC'
+            },
+            'DCH133M2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V MAX\nEnergía de impacto: 2.6 J\nVelocidad sin carga: 0-1500 RPM\nGolpes por minuto: 0-5550 GPM\nPeso: 2.1 kg',
+                includes: '(2) BATERÍAS\n(1) CARGADOR',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCH481X2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 60 V\nVelocidad de rotación: 0-540 RPM\nCapacidad de perforación: 28 mm\nVelocidad de impacto: 0-3150 GPM\nPeso: 12.4 kg\nFuerza: 6.1 J',
+                includes: '(1) ROTOMARTILLO\n(2) BATERÍAS DE 9.0 Ah\n(1) CARGADOR\n(1) EMPUÑADURA AUXILIAR\n(1) MALETA PLÁSTICA',
+                technologies: 'PERFORM & PROTECT\n60V FLEXVOLT\nAVC\nBRUSHLESS MOTOR'
+            },
+            'DCH773Y2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Medida de vibraciones: 10.1 m/s²\nGolpes por minuto: 1105-2210 GPM\nVelocidad sin carga: 145-290 RPM\nPerforación de hormigón: 7/8”-1-7/8”\nFuerza: 19.4 J\nPeso: 9.9 kg',
+                includes: '(1) ROTOMARTILLO\n(1) MANGO LATERAL 360°\n(2) BATERÍAS DE 12 Ah\n(1) CARGADOR RÁPIDO\n(1) MALETÍN',
+                technologies: 'PERFORM & PROTECT\n60V FLEXVOLT\nAVC\nBRUSHLESS MOTOR'
+            },
+            'D28730': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2300 W\nVelocidad: 4000 RPM\nCapacidad del disco: 14” (335 mm)\nTraba de eje: 1” (25.4 mm)\nPeso: 15.4 kg',
+                includes: '(1) AJUSTE DE LLAVE',
+                technologies: ''
+            },
+            'D28715': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2200 W\nVelocidad: 4000 RPM\nCapacidad del disco: 14” (335 mm)\nTraba de eje: 1” (25.4 mm)\nPeso: 17.6 kg',
+                includes: '(1) AJUSTE DE LLAVE',
+                technologies: ''
+            },
+            'DW300': {
+                catalogDetailsVersion: 1,
+                specifications: 'Sin carbones: NO\nPeso: 2.4 kg\nPotencia: 650 W\nVelocidad variable: SÍ\nVelocidad de carrera: 0-500 CPM / 0-3200 CPM\nLongitud de carrera: 20 mm\nVelocidades: 6',
+                includes: '(1) HOJA DE CORTE\n(1) PROTECTOR DE ZAPATA',
+                technologies: ''
+            },
+            'DW341': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo de uso: INDUSTRIAL\nSin carbones: NO\nArranque suave: NO\nPeso: 2 kg\nPotencia: 550 W\nVelocidad de carrera: 0-3100 CPM\nLongitud de carrera: 20 mm',
+                includes: '(1) LLAVE DE AJUSTE\n(3) HOJAS',
+                technologies: ''
+            },
+            'DW331K': {
+                catalogDetailsVersion: 1,
+                specifications: 'Sin carbones: NO\nPeso: 2.9 kg\nPotencia: 701 W\nVelocidad variable: SÍ\nVelocidad de carrera: 0-500 RPM / 0-3100 CPM\nLongitud de carrera: 25 mm\nVelocidades: 6',
+                includes: '(3) CUCHILLAS\n(1) MALETA PLÁSTICA',
+                technologies: ''
+            },
+            'DCS331B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nTipo de uso: INDUSTRIAL\nPeso: 2.8 kg\nConfiguración: BARETOOL\nVelocidad de carrera: 0-3000 CPM',
+                includes: '(2) HOJAS DE SIERRA\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: ''
+            },
+            'DW304PK': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1000 W\nVelocidad sin carga: 0-2800 CPM\nLongitud de carrera: 1-1/8” (29 mm)\nPeso: 3.2 kg\nVelocidad variable: NO',
+                includes: '(1) HOJA PARA MADERA\n(1) MALETA PLÁSTICA',
+                technologies: ''
+            },
+            'DCS389': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 60 V\nTipo de uso: INDUSTRIAL\nSin carbones: SÍ\nPeso: 7.9 kg\nVelocidades: 1 MARCHA\nVelocidad de carrera: 0-3000 CPM',
+                includes: '(2) BATERÍAS FLEXVOLT DE 60 V MAX\n(1) CARGADOR\n(1) HOJA\n(1) BOLSO DE LONA',
+                technologies: 'FLEXVOLT\nBRUSHLESS MOTOR'
+            },
+            'DWE5615-B2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1500 W\nDiámetro de disco: 7-1/4” (184 mm)\nPeso: 3.7 kg\nVelocidad de rotación: 0-5500 RPM\nCantidad de dientes: 18D',
+                includes: '(1) DISCO\n(1) LLAVE',
+                technologies: ''
+            },
+            'DWE575': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1800 W\nDiámetro de disco: 7-1/4”\nVelocidad: 5100 RPM\nPeso: 4 kg\nMaterial de corte: MADERA / MELAMINE / ALUMINIO',
+                includes: '(1) LLAVE\n(1) HOJA',
+                technologies: ''
+            },
+            'DCS570B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nDiámetro de disco: 7-1/4” (184 mm)\nPeso: 3.4 kg\nVelocidad de rotación: 5500 RPM\nVelocidades mecánicas: 1 MARCHA\nVelocidad variable: NO\nCapacidad de corte en 90°: 2-9/16” (65 mm)\nCapacidad de corte en 45°: 2” (50 mm)',
+                includes: '(1) LLAVE\n(1) HOJA\n(1) GANCHO PARA POSTES\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCS578B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 60 V\nPeso: 3.7 kg\nVelocidad de rotación: 5800 RPM\nVelocidades mecánicas: 1 MARCHA\nVelocidad variable: NO\nCapacidad de corte en 90°: 2-9/16”\nFreno electrónico: SÍ\nConfiguración: BARETOOL',
+                includes: '(1) SIERRA CIRCULAR\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCS692B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Diámetro de disco: 9” (230 mm)\nTipo de uso: INDUSTRIAL\nPeso: 8.3 kg\nVelocidad de rotación: 6600 RPM\nProfundidad de corte: 3-1/4”',
+                includes: '(1) DISCO DE CORTE DE DIAMANTE N537066\n(1) DISCO DE CORTE DWA8918\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DWE7492-B2': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2000 W\nDiámetro de disco: 10” (255 mm)\nVelocidad de rotación: 5000 RPM\nCapacidad de corte 45°: 55 mm\nCapacidad de corte 90°: 77 mm\nPeso: 26.3 kg',
+                includes: '(1) SIERRA DE MESA\n(1) GUÍA DE INGLETES\n(1) LLAVE PARA LA HOJA\n(1) HOJA DE 24 DIENTES\n(1) PUERTO DE EXTRACCIÓN',
+                technologies: ''
+            },
+            'DWE7470': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1800 W\nDiámetro de disco: 10” (254 mm)\nVelocidad de rotación: 0-5000 RPM\nCapacidad de corte 45°: 63.5 mm\nCapacidad de corte 90°: 76.2 mm\nPeso: 21 kg',
+                includes: '(1) GUÍA PARA CORTES\n(1) GUÍA DE INGLETE\n(1) HOJA\n(1) LLAVE\n(1) VARA PARA EMPUJAR',
+                technologies: ''
+            },
+            'DWS713': {
+                catalogDetailsVersion: 1,
+                specifications: 'Material de trabajo: ALUMINIO / MADERA / MELAMINE / PLÁSTICO\nDiámetro de disco: 10” (254 mm)\nSin carbones: NO\nPeso: 18 kg\nPotencia: 1600 W\nVelocidad de rotación: 0-5000 RPM\nCapacidad de corte en 90°: 89 mm\nTelescópica: NO',
+                includes: '(1) SIERRA DE INGLETE\n(1) LLAVE INGLESA\n(1) ABRAZADERA VERTICAL\n(1) HOJA CON PUNTA DE CARBURO DE 10”\n(1) BOLSA DE POLVO',
+                technologies: ''
+            },
+            'DCCS620B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nTipo de uso: INDUSTRIAL\nTipo de herramienta: BARETOOL\nPeso: 3.53 kg\nVelocidad de rotación: 7.68 m/s\nTamaño de espada: 12”',
+                includes: '(1) CUBIERTA DE BARRA DURA\n(1) MOTOSIERRA\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DWE6411': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 230 W\nTamaño de hoja: 1/4 pliego\nPeso: 1.4 kg\nVelocidades mecánicas: 1 MARCHA\nVelocidad variable: NO\nÓrbita por minuto: 14000 OPM',
+                includes: '(1) BOLSA RECOLECTORA DE POLVO\n(1) ADAPTADOR PARA EXTRACTOR\n(1) PERFORADORA DE PAPEL DE LIJA',
+                technologies: ''
+            },
+            'DWE6421': {
+                catalogDetailsVersion: 1,
+                specifications: 'Diámetro de disco: 5” (125 mm)\nSin carbones: NO\nPeso: 1.8 kg\nPotencia: 275 W\nVelocidad de rotación: 12000 RPM\nVelocidades mecánicas: 1 MARCHA\nVelocidad variable: NO\nTipo de uso: INDUSTRIAL',
+                includes: '(1) BOLSA RECOLECTORA DE POLVO\n(1) ADAPTADOR PARA EXTRACTOR',
+                technologies: ''
+            },
+            'DWP352VS': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo de uso: INDUSTRIAL\nVelocidades mecánicas: 2 MARCHAS\nPotencia: 1010 W\nVelocidad variable: SÍ\nTamaño de banda: 3” x 21”\nPeso: 5.6 kg\nPresentación: CAJA DE CARTÓN',
+                includes: '(1) LIJA DE BANDA\n(1) BOLSA RECOLECTORA DE POLVO',
+                technologies: ''
+            },
+            'DCW210B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nPeso: 0.8 kg\nTipo: BARETOOL\nVelocidad de rotación: 0-800 / 0-1200 RPM\nVelocidad variable: SÍ\nDiámetro de disco: 5” (125 mm)\nSin carbones: SÍ',
+                includes: '(1) LIJADORA DCW210B\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCP580B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nProfundidad de corte: 2 mm\nSin carbones: SÍ\nPeso: 2.5 kg\nVelocidad de rotación: 15000 RPM\nVelocidades mecánicas: 1 MARCHA\nAncho de trabajo: 3-1/4” (82.5 mm)',
+                includes: '(1) GUÍA DE USUARIO\n(1) VALLA GUÍA\n(1) LLAVE INGLESA\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DWE625': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo de uso: PROFESIONAL\nSin carbones: NO\nPeso: 6.5 kg\nPotencia: 2200 W\nVelocidad de rotación: 8000-20000 RPM\nVelocidades mecánicas: 2 MARCHAS\nTamaño de collet: 1/2” (12.7 mm) / 1/4” (6.4 mm)\nMáx. profundidad de corte: 80 mm',
+                includes: '(1) BOQUILLA DE 1/4 PULG\n(1) BOQUILLA DE 1/2 PULG\n(1) LLAVE\n(1) ADAPTADOR DE EXTRACCIÓN DE POLVO\n(1) GUÍA DE PLANTILLA UNIVERSAL',
+                technologies: ''
+            },
+            'DCW600B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nVelocidad: 16000 / 25500 RPM\nVelocidad variable: SÍ\nSin carbones: SÍ\nFreno electrónico: 27 Nm / 70 Nm',
+                includes: '(1) BASE FIJA\n(1) LLAVE\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DCE530B': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 20 V\nTipo de uso: INDUSTRIAL\nPeso: 0.8 kg\nTemperatura: 990 °F\nConfiguración: BARETOOL\nRegulador de temperatura: SÍ',
+                includes: '(1) BOQUILLA PLANA\n(1) ACCESORIO DE BOQUILLA DE GANCHO\nBATERÍA Y CARGADOR NO INCLUIDOS',
+                technologies: ''
+            },
+            'D26411': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2000 W\nTemperatura: 50-400 °C / 50-600 °C\nTipo de uso: INDUSTRIAL\nPantalla LCD: NO\nCaudal de aire: 250 / 450 l/min\nRegulador de temperatura: SÍ\nNiveles de temperatura: 2 NIVELES',
+                includes: '(1) BOQUILLA CÓNICA DE 20 mm\n(1) BOQUILLA PLANA DE 50 mm',
+                technologies: ''
+            },
+            'D26414': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 2000 W\nTemperatura: 50-600 °C\nTipo de uso: INDUSTRIAL\nPeso: 0.85 kg\nCaudal de aire: 650 l/min\nLongitud: 265 mm',
+                includes: '(1) BOQUILLA CÓNICA DE 20 mm\n(1) BOQUILLA PLANA DE 50 mm',
+                technologies: ''
+            },
+            'DWP849X': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 1250 W\nRosca de eje: 5/8”-11\nTraba de eje: \nVelocidad sin carga: 0-600 / 0-3500 RPM\nDiámetro del disco: 7” (180 mm)\nPeso: 3 kg',
+                includes: '(1) MANGO DE FORMA DE ASA\n(1) MANGO RECTO\n(1) RESPALDO DE GOMA\n(1) LLAVE DE AJUSTE',
+                technologies: ''
+            },
+            'DCM849B': {
+                catalogDetailsVersion: 1,
+                specifications: '',
+                includes: 'NO INCLUYE BATERÍA NI CARGADOR',
+                technologies: 'BRUSHLESS MOTOR'
+            },
+            'DWB800': {
+                catalogDetailsVersion: 1,
+                specifications: 'Potencia: 800 W\nTipo de uso: INDUSTRIAL\nPeso: 2.6 kg\nSin carbones: NO\nVelocidades mecánicas: 1 MARCHA\nFunciones de trabajo: ASPIRADO / SOPLADO\nFlujo volumétrico: 4.4 m³/min\nNivel de potencia acústica: 89 dB',
+                includes: '(1) BOLSA RECOLECTORA DE POLVO',
+                technologies: ''
+            },
+            'DWE46152': {
+                catalogDetailsVersion: 1,
+                specifications: 'Diámetro: 5” (127 mm)\nTipo de uso: INDUSTRIAL\nTipo de herramienta: GUARDA EXTRACTORA DE POLVO\nPeso: 0.3 kg\nHerramienta compatible: AMOLADORA\nModelo compatible: DWE4312 / DWE4336',
+                includes: '',
+                technologies: ''
+            },
+            'DWE46170': {
+                catalogDetailsVersion: 1,
+                specifications: 'Diámetro: 7” (177.8 mm)\nTipo de uso: INDUSTRIAL\nTipo de herramienta: GUARDA EXTRACTORA DE POLVO\nModelo compatible: DWE4597 / DWE4557',
+                includes: '',
+                technologies: ''
+            },
+            'DW0822': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo de alimentación: PILAS\nPrecisión: ±3 mm / 15 m\nAlcance: 15 m\nCantidad de puntos: 2\nColor de luz: ROJO\nÁngulo de aplicación láser: LÍNEAS Y PUNTOS',
+                includes: '(1) NIVELADOR LÁSER\n(3) PILAS AA\n(1) BASE AJUSTABLE\n(1) MALETÍN',
+                technologies: ''
+            },
+            'DCE0822D1G': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 12 V\nTipo de uso: INDUSTRIAL\nTamaño de rosca: 1/4”-5/8”\nÁngulo de aplicación láser: LÍNEAS Y PUNTOS\nTipo de protección: IP65\nPrecisión: ±3 mm / 10 m\nAlcance de líneas: 20 m\nAlcance con receptor: 50 m',
+                includes: '(1) MALETÍN TSTAK\n(1) BATERÍA DE 2 Ah\n(1) GAFAS DE VISIÓN LÁSER Y MIRILLA\n(1) SOPORTE PARED\n(1) CARGADOR',
+                technologies: ''
+            },
+            'DCE0811D1G': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 12 V\nTipo de uso: INDUSTRIAL\nTamaño de rosca: 1/4”\nÁngulo de aplicación láser: 360°\nTipo de protección: IP65\nPrecisión: ±3 mm / 10 m\nAlcance de líneas: 15 m\nAlcance con receptor: 50 m',
+                includes: '(1) BATERÍA 12 V 2.0 Ah\n(1) CARGADOR\n(1) TARJETA OBJETIVO\n(1) GAFAS\n(1) SOPORTE\n(1) MALETÍN TSTAK',
+                technologies: ''
+            },
+            'DCE089D1G': {
+                catalogDetailsVersion: 1,
+                specifications: 'Voltaje: 12 V\nTipo de uso: INDUSTRIAL\nTamaño de rosca: 1/4”\nÁngulo de aplicación láser: 360°\nTipo de protección: IP65\nPrecisión: ±3 mm / 10 m\nAlcance de líneas: 30 m\nAlcance con receptor: 50 m',
+                includes: '(1) BATERÍA 12 V 2.0 Ah\n(1) CARGADOR\n(1) SOPORTE DE MONTAJE EN PARED\n(1) MALETÍN\n(1) LENTES',
+                technologies: ''
+            },
+            'DW0892G': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo de alimentación: BATERÍA 9 V\nPeso: 3 kg\nTipo de protección: IP54\nPrecisión de medición: ±1.5 mm\nColor de luz: VERDE\nAlcance: 50 m',
+                includes: '',
+                technologies: ''
+            },
+            'DW0881T': {
+                catalogDetailsVersion: 1,
+                specifications: 'Tipo de uso: INDUSTRIAL\nPeso: 2.5 kg\nAltura máx. de trabajo: 170 cm',
+                includes: '(1) TRÍPODE\n(1) CONECTOR DE MONTAJE DE ROSCA EXTRAÍBLE\n(1) BOLSA DE VIAJE',
+                technologies: ''
+            }
+        };
+
+        initialProducts.forEach(function(product) {
+            if (productDetailsBySku[product.sku]) {
+                Object.assign(product, productDetailsBySku[product.sku]);
+            }
+        });
+
+        var products = [];
+        try {
+            var stored = localStorage.getItem('maqinpro_products_v5');
+            if (stored) {
+                var storedProducts = JSON.parse(stored);
+                products = initialProducts.map(function(product) {
+                    var savedProduct = storedProducts.find(function(saved) { return saved.id === product.id; });
+                    if (!savedProduct) return product;
+
+                    var mergedProduct = Object.assign({}, product, savedProduct);
+                    if (product.catalogDetailsVersion && savedProduct.catalogDetailsVersion !== product.catalogDetailsVersion) {
+                        mergedProduct.specifications = product.specifications;
+                        mergedProduct.includes = product.includes;
+                        mergedProduct.technologies = product.technologies;
+                        mergedProduct.catalogDetailsVersion = product.catalogDetailsVersion;
+                    }
+                    return mergedProduct;
+                });
+            } else {
+                products = initialProducts.slice();
+            }
+        } catch (e) {
+            products = initialProducts;
+        }
+
+        function saveProductsToStorage() {
+            try {
+                localStorage.setItem('maqinpro_products_v5', JSON.stringify(products));
+            } catch (e) {
+                console.error('LocalStorage write error', e);
+            }
+        }
+
+        var currentCategory = null;
+        var currentSubtype = 'Todos';
+        var isAdminMode = false;
+        var adminCredentials = { username: 'MAQINPRO.PERU', password: '123456789' };
+        var cart = [];
+        var activeProductDetailId = null;
+        var homeCategoryIcons = {
+            'MARTILLOS DEMOLEDORES': 'fa-hammer',
+            'ESMERILES': 'fa-compact-disc',
+            'TALADROS': 'fa-screwdriver',
+            'ATORNILLADORES': 'fa-bolt',
+            'LLAVES DE IMPACTO': 'fa-wrench',
+            'ROTOMARTILLOS': 'fa-screwdriver-wrench',
+            'TRONZADORAS': 'fa-scissors',
+            'SIERRAS': 'fa-saw',
+            'LIJADORAS': 'fa-border-all',
+            'CEPILLO': 'fa-ruler-horizontal',
+            'RUTEADORA': 'fa-bezier-curve',
+            'PISTOLAS DE CALOR': 'fa-temperature-high',
+            'PULIDORAS': 'fa-sun',
+            'CLAVADORAS': 'fa-thumbtack',
+            'SOPLADORAS': 'fa-wind',
+            'LASER': 'fa-crosshairs',
+            'KITS INALÁMBRICOS': 'fa-toolbox',
+            'DISCOS': 'fa-compact-disc',
+            'CARGADORES': 'fa-plug',
+            'BATERÍAS': 'fa-battery-full',
+            'GUARDAS': 'fa-shield-halved'
+        };
+        var fixedSpecificationFields = {
+            'MARTILLOS DEMOLEDORES': [
+                'Potencia',
+                'Encastre',
+                'Golpes por minuto',
+                'Energía de impacto',
+                'Medición de vibración',
+                'Posiciones de velocidad',
+                'Peso'
+            ],
+            'ESMERILES': [
+                'Potencia',
+                'Velocidad',
+                'Diámetro del disco',
+                'Estilo de interruptor',
+                'Peso'
+            ]
+        };
+        var fixedSpecificationFieldsBySku = {
+            'DWE497': ['Potencia', 'Velocidad', 'Voltaje', 'Diámetro del disco', 'Peso'],
+            'DWE496': ['Potencia', 'Velocidad', 'Voltaje', 'Diámetro del disco', 'Peso'],
+            'DWE4557': ['Potencia', 'Velocidad', 'Diámetro del disco', 'Protección de abrasión', 'Peso'],
+            'DWE4997NVS': ['Potencia', 'Velocidad', 'Peso'],
+            'DCG426M2': ['Voltaje', 'Diámetro de collet', 'Longitud de la herramienta', 'Cortes por minuto', 'Peso'],
+            'DCG413B': ['Voltaje', 'Diámetro del disco', 'Velocidad de rotación', 'Velocidad variable', 'Peso'],
+            'DCG418T2': ['Voltaje', 'Velocidad máxima de rotación', 'Diámetro del disco', 'Material de corte', 'Amperaje de batería'],
+            'DCD700C2': ['Voltaje', 'Potencia máxima', 'Tamaño de mandril', 'Velocidad sin carga', 'Torque', 'Peso'],
+            'DCD708D2': ['Voltaje', 'Capacidad de mandril', 'Velocidad sin carga', 'Posiciones de torque', 'Torque', 'Peso'],
+            'DCD7771D2': ['Tamaño de mandril', 'Velocidad', 'Potencia', 'Torque', 'Capacidad madera', 'Capacidad metal'],
+            'DCD716D2': ['Voltaje', 'Batería', 'Capacidad en madera', 'Capacidad en mandril', 'Velocidad sin carga', 'Torque', 'Peso'],
+            'DCD709D2': ['Voltaje', 'Capacidad de mandril', 'Velocidades mecánicas', 'Impactos por minuto', 'Torque', 'Velocidad de rotación'],
+            'DCD7781D2': ['Tamaño de mandril', 'Velocidad', 'Potencia', 'Torque', 'Golpes por minuto', 'Capacidad metal'],
+            'DCD796D2': ['Tamaño de mandril', 'Velocidad', 'Potencia', 'Golpes por minuto', 'Posiciones', 'Peso'],
+            'DCD996P2T': ['Voltaje', 'Capacidad de mandril', 'Velocidad de rotación', 'Torque', 'Velocidad de impacto', 'Tipo de uso'],
+            'DWD024': ['Potencia', 'Velocidad sin carga', 'Golpes por minuto', 'Capacidad de mandril', 'Peso'],
+            'DW508S': ['Potencia', 'Velocidad sin carga', 'Golpes por minuto', 'Capacidad de mandril', 'Peso'],
+            'DWD520': ['Potencia', 'Velocidad sin carga', 'Golpes por minuto', 'Capacidad de mandril', 'Peso'],
+            'DCD999B': ['Voltaje', 'Peso', 'Velocidad de rotación', 'Tamaño de mandril', 'Velocidad de impacto', 'Capacidad de perforación máxima en mampostería'],
+            'DCD1007B': ['Voltaje', 'Tipo de uso', 'Velocidad de rotación', 'Tamaño de mandril', 'Velocidad de impacto', 'Torque', 'Peso'],
+            'DW130V': ['Potencia', 'Velocidad sin carga', 'Capacidad de mandril', 'Peso'],
+            'DWE1622K': ['Potencia', 'Velocidad sin carga', 'Capacidad de mandril', 'Fuerza del magneto', 'Interruptor con bloqueo de voltaje', 'Peso'],
+            'D21585': ['Potencia', 'Velocidad sin carga', 'Capacidad de mandril', 'Capacidad en concreto', 'Capacidad en mampostería', 'Peso'],
+            'DCD130B': ['Voltaje', 'Peso', 'Tamaño de mandril', 'Velocidad de rotación', 'Velocidad variable'],
+            'DCF7871D2': ['Mandril hexagonal', 'Velocidad', 'Potencia', 'Torque', 'Golpes por minuto', 'Luz LED'],
+            'DCF809D2': ['Voltaje', 'Tipo de uso', 'Encastre', 'Torque', 'Velocidad de impacto', 'Velocidad de rotación'],
+            'DCF887M2': ['Amperaje', 'Potencia', 'Velocidad sin carga', 'Embrague', 'Torque', 'Peso'],
+            'DCF889M2': ['Tamaño de cuadrante', 'Velocidad', 'Impacto por minuto', 'Torsión máxima', 'Peso', 'Encastre'],
+            'DCF897B': ['Torque', 'Velocidad', 'Velocidad de impacto', 'Tipo', 'Voltaje', 'Encastre'],
+            'DCF899B': ['Voltaje', 'Tipo de uso', 'Encastre', 'Tipo', 'Velocidad', 'Velocidad de impacto'],
+            'DCF900B': ['Voltaje', 'Tipo de uso', 'Encastre', 'Velocidad de rotación', 'Velocidad de impacto', 'Torque'],
+            'DCB201': ['Tipo', 'Voltaje', 'Amperaje', 'Características'],
+            'DCB203': ['Tipo', 'Voltaje', 'Amperaje', 'Características'],
+            'DCB200': ['Tipo', 'Voltaje', 'Amperaje', 'Características'],
+            'DCB204': ['Tipo', 'Voltaje', 'Amperaje', 'Características'],
+            'DCB205': ['Tipo', 'Voltaje', 'Amperaje', 'Características'],
+            'DCB606': ['Tipo', 'Voltaje', 'Amperaje', 'Características'],
+            'DCB609': ['Tipo', 'Voltaje', 'Amperaje', 'Características'],
+            'DCB615': ['Tipo', 'Voltaje', 'Amperaje', 'Características'],
+            'DCH172B': ['Energía de impacto', 'Velocidad sin carga', 'Impactos por minuto', 'Rango de taladro óptimo', 'Medida de vibración', 'Largo de herramienta', 'Peso'],
+            'D25133K': ['Potencia', 'Energía de impacto', 'Velocidad sin carga', 'Golpes por minuto', 'Peso'],
+            'D25260K': ['Potencia', 'Energía de impacto', 'Velocidad sin carga', 'Golpes por minuto', 'Peso'],
+            'D25333K': ['Potencia', 'Energía de impacto', 'Velocidad sin carga', 'Golpes por minuto', 'Peso'],
+            'D25773K': ['Potencia', 'Energía de impacto', 'Velocidad sin carga', 'Golpes por minuto', 'Peso'],
+            'DCH133M2': ['Voltaje', 'Energía de impacto', 'Velocidad sin carga', 'Golpes por minuto', 'Peso'],
+            'DCH481X2': ['Voltaje', 'Velocidad de rotación', 'Capacidad de perforación', 'Velocidad de impacto', 'Peso', 'Fuerza'],
+            'DCH773Y2': ['Medida de vibraciones', 'Golpes por minuto', 'Velocidad sin carga', 'Perforación de hormigón', 'Fuerza', 'Peso'],
+            'D28730': ['Potencia', 'Velocidad', 'Capacidad del disco', 'Traba de eje', 'Peso'],
+            'D28715': ['Potencia', 'Velocidad', 'Capacidad del disco', 'Traba de eje', 'Peso'],
+            'DW300': ['Sin carbones', 'Peso', 'Potencia', 'Velocidad variable', 'Velocidad de carrera', 'Longitud de carrera', 'Velocidades'],
+            'DW341': ['Tipo de uso', 'Sin carbones', 'Arranque suave', 'Peso', 'Potencia', 'Velocidad de carrera', 'Longitud de carrera'],
+            'DW331K': ['Sin carbones', 'Peso', 'Potencia', 'Velocidad variable', 'Velocidad de carrera', 'Longitud de carrera', 'Velocidades'],
+            'DCS331B': ['Voltaje', 'Tipo de uso', 'Peso', 'Configuración', 'Velocidad de carrera'],
+            'DW304PK': ['Potencia', 'Velocidad sin carga', 'Longitud de carrera', 'Peso', 'Velocidad variable'],
+            'DCS389': ['Voltaje', 'Tipo de uso', 'Sin carbones', 'Peso', 'Velocidades', 'Velocidad de carrera'],
+            'DWE5615-B2': ['Potencia', 'Diámetro de disco', 'Peso', 'Velocidad de rotación', 'Cantidad de dientes'],
+            'DWE575': ['Potencia', 'Diámetro de disco', 'Velocidad', 'Peso', 'Material de corte'],
+            'DCS570B': ['Voltaje', 'Diámetro de disco', 'Peso', 'Velocidad de rotación', 'Velocidades mecánicas', 'Velocidad variable', 'Capacidad de corte en 90°', 'Capacidad de corte en 45°'],
+            'DCS578B': ['Voltaje', 'Peso', 'Velocidad de rotación', 'Velocidades mecánicas', 'Velocidad variable', 'Capacidad de corte en 90°', 'Freno electrónico', 'Configuración'],
+            'DCS692B': ['Diámetro de disco', 'Tipo de uso', 'Peso', 'Velocidad de rotación', 'Profundidad de corte'],
+            'DWE7492-B2': ['Potencia', 'Diámetro de disco', 'Velocidad de rotación', 'Capacidad de corte 45°', 'Capacidad de corte 90°', 'Peso'],
+            'DWE7470': ['Potencia', 'Diámetro de disco', 'Velocidad de rotación', 'Capacidad de corte 45°', 'Capacidad de corte 90°', 'Peso'],
+            'DWS713': ['Material de trabajo', 'Diámetro de disco', 'Sin carbones', 'Peso', 'Potencia', 'Velocidad de rotación', 'Capacidad de corte en 90°', 'Telescópica'],
+            'DCCS620B': ['Voltaje', 'Tipo de uso', 'Tipo de herramienta', 'Peso', 'Velocidad de rotación', 'Tamaño de espada'],
+            'DWE6411': ['Potencia', 'Tamaño de hoja', 'Peso', 'Velocidades mecánicas', 'Velocidad variable', 'Órbita por minuto'],
+            'DWE6421': ['Diámetro de disco', 'Sin carbones', 'Peso', 'Potencia', 'Velocidad de rotación', 'Velocidades mecánicas', 'Velocidad variable', 'Tipo de uso'],
+            'DWP352VS': ['Tipo de uso', 'Velocidades mecánicas', 'Potencia', 'Velocidad variable', 'Tamaño de banda', 'Peso', 'Presentación'],
+            'DCW210B': ['Voltaje', 'Peso', 'Tipo', 'Velocidad de rotación', 'Velocidad variable', 'Diámetro de disco', 'Sin carbones'],
+            'DCP580B': ['Voltaje', 'Profundidad de corte', 'Sin carbones', 'Peso', 'Velocidad de rotación', 'Velocidades mecánicas', 'Ancho de trabajo'],
+            'DWE625': ['Tipo de uso', 'Sin carbones', 'Peso', 'Potencia', 'Velocidad de rotación', 'Velocidades mecánicas', 'Tamaño de collet', 'Máx. profundidad de corte'],
+            'DCW600B': ['Voltaje', 'Velocidad', 'Velocidad variable', 'Sin carbones', 'Freno electrónico'],
+            'DCE530B': ['Voltaje', 'Tipo de uso', 'Peso', 'Temperatura', 'Configuración', 'Regulador de temperatura'],
+            'D26411': ['Potencia', 'Temperatura', 'Tipo de uso', 'Pantalla LCD', 'Caudal de aire', 'Regulador de temperatura', 'Niveles de temperatura'],
+            'D26414': ['Potencia', 'Temperatura', 'Tipo de uso', 'Peso', 'Caudal de aire', 'Longitud'],
+            'DWP849X': ['Potencia', 'Rosca de eje', 'Traba de eje', 'Velocidad sin carga', 'Diámetro del disco', 'Peso'],
+            'DWB800': ['Potencia', 'Tipo de uso', 'Peso', 'Sin carbones', 'Velocidades mecánicas', 'Funciones de trabajo', 'Flujo volumétrico', 'Nivel de potencia acústica'],
+            'DWE46152': ['Diámetro', 'Tipo de uso', 'Tipo de herramienta', 'Peso', 'Herramienta compatible', 'Modelo compatible'],
+            'DWE46170': ['Diámetro', 'Tipo de uso', 'Tipo de herramienta', 'Modelo compatible'],
+            'DW0822': ['Tipo de alimentación', 'Precisión', 'Alcance', 'Cantidad de puntos', 'Color de luz', 'Ángulo de aplicación láser'],
+            'DCE0822D1G': ['Voltaje', 'Tipo de uso', 'Tamaño de rosca', 'Ángulo de aplicación láser', 'Tipo de protección', 'Precisión', 'Alcance de líneas', 'Alcance con receptor'],
+            'DCE0811D1G': ['Voltaje', 'Tipo de uso', 'Tamaño de rosca', 'Ángulo de aplicación láser', 'Tipo de protección', 'Precisión', 'Alcance de líneas', 'Alcance con receptor'],
+            'DCE089D1G': ['Voltaje', 'Tipo de uso', 'Tamaño de rosca', 'Ángulo de aplicación láser', 'Tipo de protección', 'Precisión', 'Alcance de líneas', 'Alcance con receptor'],
+            'DW0892G': ['Tipo de alimentación', 'Peso', 'Tipo de protección', 'Precisión de medición', 'Color de luz', 'Alcance'],
+            'DW0881T': ['Tipo de uso', 'Peso', 'Altura máx. de trabajo']
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderSidebar();
+            showHomeView();
+        });
+
+        function renderHomeCategories() {
+            var query = document.getElementById('homeCategorySearch').value.trim().toLowerCase();
+            var visibleCategories = categories.filter(function(category) {
+                return category.name.toLowerCase().indexOf(query) !== -1;
+            });
+            var container = document.getElementById('homeCategoryGrid');
+            var html = '';
+
+            visibleCategories.forEach(function(category) {
+                var productCount = products.filter(function(product) { return product.category === category.id; }).length;
+                var icon = homeCategoryIcons[category.id] || 'fa-toolbox';
+                html += '<button type="button" onclick="selectCategory(\'' + category.id + '\')" class="group min-h-20 flex items-center gap-3 border border-dewalt-border bg-dewalt-cardBg px-4 py-3 text-left hover:border-dewalt-yellow hover:bg-black transition-colors">' +
+                    '<span class="w-10 h-10 shrink-0 flex items-center justify-center border border-dewalt-yellow/40 bg-dewalt-yellow/10 text-dewalt-yellow"><i class="fa-solid ' + icon + '"></i></span>' +
+                    '<span class="min-w-0 flex-1"><span class="block text-xs sm:text-sm font-extrabold text-white group-hover:text-dewalt-yellow truncate">' + category.name + '</span><span class="block text-[10px] text-gray-500 mt-1">' + productCount + ' productos</span></span>' +
+                    '<i class="fa-solid fa-arrow-right text-xs text-gray-600 group-hover:text-dewalt-yellow"></i>' +
+                    '</button>';
+            });
+
+            container.innerHTML = html;
+            document.getElementById('homeCategoryCount').textContent = visibleCategories.length + (visibleCategories.length === 1 ? ' categoría' : ' categorías') + ' disponibles';
+            document.getElementById('homeCategoryNoResults').classList.toggle('hidden', visibleCategories.length !== 0);
+        }
+
+        function showHomeView() {
+            document.getElementById('homeView').classList.remove('hidden');
+            document.getElementById('catalogView').classList.add('hidden');
+            document.getElementById('catalogHeroBanner').classList.add('hidden');
+            document.getElementById('sidebarMenu').style.display = 'none';
+            document.getElementById('mobileSidebarToggle').classList.add('hidden');
+            renderHomeCategories();
+        }
+
+        function goHome() {
+            currentCategory = null;
+            currentSubtype = 'Todos';
+            document.getElementById('searchInput').value = '';
+            document.getElementById('stockFilterToggle').checked = false;
+            document.getElementById('homeCategorySearch').value = '';
+            document.querySelectorAll('.subtype-btn').forEach(function(button) {
+                button.classList.remove('bg-dewalt-yellow', 'text-black');
+                button.classList.add('bg-black', 'text-gray-300');
+            });
+            document.getElementById('subtype-Todos').classList.add('bg-dewalt-yellow', 'text-black');
+            renderSidebar();
+            showHomeView();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderSidebar() {
+            var container = document.getElementById('categoryList');
+            var html = '';
+            for (var i = 0; i < categories.length; i++) {
+                var cat = categories[i];
+                var isActive = (currentCategory === cat.id);
+                var activeClass = isActive ? 'active' : 'text-gray-300 hover:text-white hover:bg-black/50';
+                var badge = (cat.id === 'DISCOS') ? '<span class="bg-dewalt-yellow text-black text-[9px] font-black px-1.5 py-0.5 rounded ml-2 flex-shrink-0">ACTIVO</span>' : '';
+                
+                html += '<button onclick="selectCategory(\'' + cat.id + '\')" class="category-btn w-full text-left px-3 py-2.5 rounded-xl text-xs flex items-center justify-between transition-all ' + activeClass + '">' +
+                        '<span class="font-semibold tracking-wide truncate">' + cat.name + '</span>' +
+                        badge +
+                        '</button>';
+            }
+            container.innerHTML = html;
+        }
+
+        function selectCategory(catId) {
+            currentCategory = catId;
+            document.getElementById('homeView').classList.add('hidden');
+            document.getElementById('catalogView').classList.remove('hidden');
+            document.getElementById('catalogHeroBanner').classList.remove('hidden');
+            document.getElementById('sidebarMenu').style.display = '';
+            document.getElementById('mobileSidebarToggle').classList.remove('hidden');
+            renderSidebar();
+
+            document.getElementById('currentCategoryTitle').innerText = catId;
+            document.getElementById('discSubtypeFilters').classList.toggle('hidden', catId !== 'DISCOS');
+            document.getElementById('discsSpecialHeader').classList.remove('hidden');
+            filterProducts();
+        }
+
+        function setDiscSubtype(subtype) {
+            currentSubtype = subtype;
+            
+            var buttons = document.querySelectorAll('.subtype-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('bg-dewalt-yellow', 'text-black');
+                buttons[i].classList.add('bg-black', 'text-gray-300');
+            }
+
+            if (subtype === 'Todos') {
+                document.getElementById('subtype-Todos').classList.add('bg-dewalt-yellow', 'text-black');
+            } else if (subtype === 'Corte Metal & Inox') {
+                document.getElementById('subtype-Corte').classList.add('bg-dewalt-yellow', 'text-black');
+            } else if (subtype === 'Desbaste') {
+                document.getElementById('subtype-Desbaste').classList.add('bg-dewalt-yellow', 'text-black');
+            }
+
+            filterProducts();
+        }
+
+        function filterProducts() {
+            var searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+            var onlyStock = document.getElementById('stockFilterToggle').checked;
+            var categoryProducts = products.filter(function(product) { return product.category === currentCategory; });
+            var grid = document.getElementById('productGrid');
+            var emptyView = document.getElementById('emptyCategoryView');
+            var noResults = document.getElementById('noResultsState');
+
+            if (categoryProducts.length === 0) {
+                grid.classList.add('hidden');
+                noResults.classList.add('hidden');
+                emptyView.classList.remove('hidden');
+                document.getElementById('emptyCategoryTitle').innerText = 'Catálogo 2026 en actualización (' + currentCategory + ')';
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            emptyView.classList.add('hidden');
+
+            var filtered = [];
+            for (var i = 0; i < categoryProducts.length; i++) {
+                var p = categoryProducts[i];
+                var matchesSubtype = currentCategory !== 'DISCOS' || (currentSubtype === 'Todos') || (p.subtype === currentSubtype);
+                var matchesStock = !onlyStock || p.inStock;
+                var matchesSearch = p.sku.toLowerCase().indexOf(searchQuery) !== -1 || 
+                                      p.name.toLowerCase().indexOf(searchQuery) !== -1 ||
+                                      p.description.toLowerCase().indexOf(searchQuery) !== -1;
+
+                if (matchesSubtype && matchesStock && matchesSearch) {
+                    filtered.push(p);
+                }
+            }
+
+            renderProductGrid(filtered);
+        }
+
+        function renderProductGrid(items) {
+            var grid = document.getElementById('productGrid');
+            var noResults = document.getElementById('noResultsState');
+
+            if (items.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+
+            var html = '';
+            for (var i = 0; i < items.length; i++) {
+                var product = items[i];
+                var productImage = renderLocalProductImage(product);
+                var imageContainerStyle = currentCategory === 'DISCOS' ?
+                    'relative h-48 bg-white overflow-hidden flex items-center justify-center p-3' :
+                    'relative h-48 bg-black/60 overflow-hidden flex items-center justify-center p-3';
+                var stockBadge = product.inStock ? 
+                    '<span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[9px] font-bold px-2 py-0.5 rounded-full">En Stock</span>' : 
+                    '<span class="bg-red-500/20 text-red-400 border border-red-500/40 text-[9px] font-bold px-2 py-0.5 rounded-full">Agotado</span>';
+
+                var adminEditBtn = isAdminMode ? 
+                    '<div class="absolute bottom-2 right-2 z-20 flex gap-1">' +
+                        '<label class="bg-amber-500 hover:bg-amber-600 text-black px-2 py-1 rounded-lg text-xs font-bold shadow flex items-center gap-1 cursor-pointer transition-all">' +
+                            '<i class="fa-solid fa-folder-open"></i><span class="text-[9px]">Cargar desde PC</span>' +
+                            '<input type="file" accept="image/jpeg,image/jpg,image/png,image/webp" onchange="uploadProductImage(' + product.id + ', event)" class="hidden">' +
+                        '</label>' +
+                    '</div>' : '';
+
+                var adminToggleStock = isAdminMode ? 
+                    '<div class="pt-2 border-t border-dashed border-amber-500/40 flex items-center justify-between"><span class="text-[10px] font-bold text-amber-300">Stock:</span><button onclick="toggleProductStock(' + product.id + ')" class="px-2 py-0.5 text-[9px] font-bold rounded ' + (product.inStock ? 'bg-red-500/80 text-white' : 'bg-green-500/80 text-black') + '">' + (product.inStock ? 'Ocultar Stock' : 'Activar Stock') + '</button></div>' : '';
+
+                var actionButton = product.inStock ? 
+                    '<button onclick="addToCartWithQty(' + product.id + ')" class="w-full bg-dewalt-yellow hover:bg-dewalt-darkYellow text-black font-black text-xs py-2 rounded-lg transition-all flex items-center justify-center space-x-1.5 shadow-md"><i class="fa-solid fa-plus text-xs"></i><span>Agregar a la Lista</span></button>' : 
+                    '<button disabled class="w-full bg-gray-800 text-gray-500 font-bold text-xs py-2 rounded-lg cursor-not-allowed">Agotado Temporalmente</button>';
+
+                var descText = product.description ? '<p class="text-[11px] text-gray-400 mt-1 font-medium">' + product.description + '</p>' : '';
+
+                html += '<div onclick="openProductDetailFromCard(event, ' + product.id + ')" class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 border border-dewalt-border cursor-pointer">' +
+                            '<div class="' + imageContainerStyle + '">' +
+                                productImage +
+                                '<div class="absolute top-2.5 right-2.5 z-10">' + stockBadge + '</div>' +
+                                adminEditBtn +
+                            '</div>' +
+                            '<div class="p-4 flex-1 flex flex-col justify-between space-y-3">' +
+                                '<div>' +
+                                    '<div class="flex items-center justify-between text-[11px] text-gray-400 mb-1">' +
+                                        '<span class="font-mono text-dewalt-yellow font-bold">' + product.sku + '</span>' +
+                                        '<span>' + product.subtype + '</span>' +
+                                    '</div>' +
+                                    '<button type="button" onclick="openProductDetail(' + product.id + ')" class="font-extrabold text-white text-xs sm:text-sm leading-snug text-left hover:text-dewalt-yellow transition-colors">' + product.name + '</button>' +
+                                    descText +
+                                '</div>' +
+                                '<div class="pt-2 border-t border-dewalt-border space-y-2">' +
+                                    '<div class="flex items-center justify-between">' +
+                                        '<span class="text-[10px] text-gray-300 font-bold uppercase">Cantidad:</span>' +
+                                        '<div class="flex items-center gap-1">' +
+                                            '<button onclick="setQuickQty(' + product.id + ', 1)" class="text-[9px] bg-black border border-dewalt-border hover:border-dewalt-yellow text-gray-300 px-1.5 py-0.5 rounded">1 U</button>' +
+                                            '<button onclick="setQuickQty(' + product.id + ', 10)" class="text-[9px] bg-black border border-dewalt-border hover:border-dewalt-yellow text-gray-300 px-1.5 py-0.5 rounded">10 U</button>' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<div class="flex items-center space-x-1.5">' +
+                                        '<button onclick="changeInputQty(' + product.id + ', -1)" class="bg-black border border-dewalt-border text-white text-xs font-bold w-7 h-7 rounded flex items-center justify-center">-</button>' +
+                                        '<input type="number" id="qtyInput_' + product.id + '" value="1" min="1" step="1" class="w-full bg-black border border-dewalt-border rounded text-center font-bold text-dewalt-yellow text-xs py-1 outline-none">' +
+                                        '<button onclick="changeInputQty(' + product.id + ', 1)" class="bg-black border border-dewalt-border text-white text-xs font-bold w-7 h-7 rounded flex items-center justify-center">+</button>' +
+                                    '</div>' +
+                                    actionButton +
+                                '</div>' +
+                                adminToggleStock +
+                            '</div>' +
+                        '</div>';
+            }
+
+            grid.innerHTML = html;
+            grid.querySelectorAll('img[data-product-sku]').forEach(function(image) {
+                image.onerror = function() {
+                    var fallbacks = [image.dataset.alternateJpg, image.dataset.lowercaseWebp, image.dataset.normalizedWebp, image.dataset.lowercaseJfif];
+                    var fallbackIndex = parseInt(image.dataset.fallbackIndex, 10) || 0;
+                    if (fallbackIndex < fallbacks.length) {
+                        image.dataset.fallbackIndex = fallbackIndex + 1;
+                        image.src = fallbacks[fallbackIndex];
+                        return;
+                    }
+
+                    image.onerror = null;
+                    image.classList.add('hidden');
+                    if (image.nextElementSibling) image.nextElementSibling.classList.remove('hidden');
+                };
+            });
+        }
+
+        function renderLocalProductImage(product) {
+            var sku = product.sku.toLowerCase();
+            var normalizedSku = sku.replace(/[^a-z0-9]/g, '');
+            var altText = (product.sku + ' - ' + product.name).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+            var imageClasses = product.category === 'DISCOS' ?
+                'w-24 h-24 object-contain rounded-full mx-auto mix-blend-multiply' :
+                'w-full h-48 object-contain p-2';
+
+            return '<img id="img_' + product.id + '" src="images/' + sku + '.jpg" alt="' + altText + '" data-product-sku="' + sku + '" data-alternate-jpg="images/' + normalizedSku + '.jpg" data-lowercase-webp="images/' + sku + '.webp" data-normalized-webp="images/' + normalizedSku + '.webp" data-lowercase-jfif="images/' + sku + '.jfif" data-fallback-index="0" loading="lazy" class="' + imageClasses + '">' +
+                '<button type="button" onclick="openProductDetail(' + product.id + ')" aria-label="Ver ficha de ' + product.sku + '" class="hidden w-28 h-28 items-center justify-center text-5xl text-dewalt-yellow/70 cursor-pointer"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></button>';
+        }
+
+        function uploadProductImage(productId, event) {
+            var file = event.target.files[0];
+            if (!file) return;
+
+            if (file.size > 5 * 1024 * 1024) {
+                showToastNotification('⚠️ La imagen es muy pesada. Usa una de menos de 5MB.');
+                return;
+            }
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var base64Image = e.target.result;
+                for (var i = 0; i < products.length; i++) {
+                    if (products[i].id === productId) {
+                        products[i].image = base64Image;
+                        saveProductsToStorage();
+                        filterProducts();
+                        showToastNotification('📷 Imagen de ' + products[i].sku + ' actualizada correctamente desde tu PC.');
+                        break;
+                    }
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetAllImages() {
+            if (confirm('¿Deseas restablecer las imágenes predeterminadas del catálogo?')) {
+                for (var i = 0; i < products.length; i++) {
+                    var orig = initialProducts.find(function(p) { return p.id === products[i].id; });
+                    if (orig) {
+                        products[i].image = orig.image;
+                    }
+                }
+                saveProductsToStorage();
+                filterProducts();
+                showToastNotification('Imágenes restablecidas a su estado inicial.');
+            }
+        }
+
+        function setQuickQty(productId, qty) {
+            var input = document.getElementById('qtyInput_' + productId);
+            if (input) input.value = qty;
+        }
+
+        function changeInputQty(productId, delta) {
+            var input = document.getElementById('qtyInput_' + productId);
+            if (input) {
+                var currentVal = parseInt(input.value) || 0;
+                input.value = Math.max(1, currentVal + delta);
+            }
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('stockFilterToggle').checked = false;
+            setDiscSubtype('Todos');
+        }
+
+        function toggleAdminMode() {
+            if (isAdminMode) {
+                logoutAdminMode();
+                return;
+            }
+
+            var modal = document.getElementById('adminLoginModal');
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('adminLoginError').classList.add('hidden');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            modal.setAttribute('aria-hidden', 'false');
+            document.getElementById('adminUsername').focus();
+        }
+
+        function closeAdminLogin() {
+            var modal = document.getElementById('adminLoginModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            modal.setAttribute('aria-hidden', 'true');
+            document.getElementById('adminPassword').value = '';
+        }
+
+        function submitAdminLogin() {
+            var username = document.getElementById('adminUsername').value.trim();
+            var password = document.getElementById('adminPassword').value;
+
+            if (username !== adminCredentials.username || password !== adminCredentials.password) {
+                document.getElementById('adminLoginError').classList.remove('hidden');
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('adminPassword').focus();
+                return;
+            }
+
+            isAdminMode = true;
+            closeAdminLogin();
+            document.getElementById('adminNotice').classList.remove('hidden');
+            document.getElementById('adminToggleLabel').textContent = 'Cerrar sesión';
+            filterProducts();
+            if (activeProductDetailId !== null) renderProductDetail(activeProductDetailId);
+        }
+
+        function logoutAdminMode() {
+            isAdminMode = false;
+            document.getElementById('adminNotice').classList.add('hidden');
+            document.getElementById('adminToggleLabel').textContent = 'Modo Admin';
+            filterProducts();
+            if (activeProductDetailId !== null) renderProductDetail(activeProductDetailId);
+        }
+
+        function openProductDetailFromCard(event, productId) {
+            if (event.target.closest('button, input, label, textarea')) return;
+            openProductDetail(productId);
+        }
+
+        function openProductDetail(productId) {
+            activeProductDetailId = productId;
+            renderProductDetail(productId);
+            var modal = document.getElementById('productDetailModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('overflow-hidden');
+            modal.querySelector('button[aria-label="Cerrar ficha del producto"]').focus();
+        }
+
+        function closeProductDetail() {
+            var modal = document.getElementById('productDetailModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('overflow-hidden');
+            activeProductDetailId = null;
+        }
+
+        function renderProductDetail(productId) {
+            var product = products.find(function(item) { return item.id === productId; });
+            if (!product) return;
+
+            document.getElementById('productDetailSku').textContent = product.sku;
+            document.getElementById('productDetailName').textContent = product.name;
+            var detailImage = document.getElementById('productDetailImage');
+            var imagePlaceholder = document.getElementById('productDetailImagePlaceholder');
+            detailImage.alt = product.name;
+            if (product.category === 'DISCOS') {
+                detailImage.removeAttribute('src');
+                detailImage.classList.add('hidden');
+                imagePlaceholder.classList.add('hidden');
+            } else if (product.image) {
+                detailImage.src = product.image;
+                detailImage.classList.remove('hidden');
+                imagePlaceholder.classList.add('hidden');
+            } else {
+                detailImage.removeAttribute('src');
+                detailImage.classList.add('hidden');
+                imagePlaceholder.classList.remove('hidden');
+            }
+
+            renderProductDetailField('productDetailSpecifications', 'Especificaciones', 'specifications', product);
+            renderProductDetailField('productDetailIncludes', 'Qué incluye', 'includes', product);
+            renderProductDetailField('productDetailTechnologies', 'Tecnologías', 'technologies', product);
+            document.getElementById('productDetailAdminNote').classList.toggle('hidden', !isAdminMode);
+        }
+
+        function renderProductDetailField(containerId, title, fieldName, product) {
+            var container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            var heading = document.createElement('h3');
+            heading.className = 'bg-dewalt-yellow text-black font-black text-sm uppercase px-3 py-2';
+            heading.textContent = title;
+            container.appendChild(heading);
+
+            var productSpecificationFields = fixedSpecificationFieldsBySku[product.sku] || fixedSpecificationFields[product.category];
+            if (fieldName === 'specifications' && productSpecificationFields) {
+                renderFixedSpecifications(container, product, productSpecificationFields);
+                return;
+            }
+
+            if (isAdminMode) {
+                var editor = document.createElement('textarea');
+                editor.className = 'w-full min-h-24 resize-y bg-black/70 border border-dewalt-border p-3 text-sm text-white placeholder-gray-500 outline-none focus:border-dewalt-yellow';
+                editor.placeholder = fieldName === 'specifications' ?
+                    'Un dato por línea, por ejemplo: Potencia: 1050 W' :
+                    'Escribe aquí la información. Puedes usar una línea por dato.';
+                editor.value = product[fieldName] || '';
+                editor.setAttribute('aria-label', title + ' de ' + product.sku);
+                editor.addEventListener('input', function() {
+                    product[fieldName] = editor.value;
+                    saveProductsToStorage();
+                });
+                container.appendChild(editor);
+                return;
+            }
+
+            var savedText = (product[fieldName] || '').trim();
+            if (fieldName === 'specifications' && savedText) {
+                var rows = document.createElement('div');
+                rows.className = 'border border-dewalt-border divide-y divide-dewalt-border';
+                savedText.split(/\r?\n/).filter(function(line) { return line.trim(); }).forEach(function(line) {
+                    var separatorIndex = line.search(/[:：]/);
+                    var row = document.createElement('div');
+                    row.className = 'grid grid-cols-[minmax(0,1fr)_auto] gap-4 items-start bg-white/5 px-3 py-2.5 text-sm';
+                    if (separatorIndex > 0) {
+                        var label = document.createElement('span');
+                        label.className = 'font-semibold text-gray-300';
+                        label.textContent = line.slice(0, separatorIndex).trim();
+                        var value = document.createElement('span');
+                        value.className = 'text-right font-bold text-white';
+                        value.textContent = line.slice(separatorIndex + 1).trim();
+                        row.appendChild(label);
+                        row.appendChild(value);
+                    } else {
+                        row.classList.remove('grid', 'grid-cols-[minmax(0,1fr)_auto]');
+                        row.classList.add('text-gray-200', 'whitespace-pre-line');
+                        row.textContent = line.trim();
+                    }
+                    rows.appendChild(row);
+                });
+                container.appendChild(rows);
+                return;
+            }
+
+            var content = document.createElement('p');
+            content.className = 'min-h-14 bg-white/5 border border-dewalt-border px-3 py-3 text-sm text-gray-200 whitespace-pre-line';
+            content.textContent = savedText || 'Información no registrada.';
+            container.appendChild(content);
+        }
+
+        function getFixedSpecificationValues(product, fields) {
+            var values = {};
+            fields.forEach(function(field) { values[field] = ''; });
+
+            (product.specifications || '').split(/\r?\n/).forEach(function(line) {
+                var separatorIndex = line.search(/[:：]/);
+                if (separatorIndex < 1) return;
+
+                var label = line.slice(0, separatorIndex).trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+                var field = fields.find(function(candidate) {
+                    return candidate.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() === label;
+                });
+                if (field) values[field] = line.slice(separatorIndex + 1).trim();
+            });
+
+            return values;
+        }
+
+        function renderFixedSpecifications(container, product, fields) {
+            var values = getFixedSpecificationValues(product, fields);
+            var rows = document.createElement('div');
+            rows.className = 'border border-dewalt-border divide-y divide-dewalt-border';
+
+            fields.forEach(function(field, index) {
+                var row = document.createElement('div');
+                row.className = 'grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-3 items-center bg-white/5 px-3 py-2.5 text-sm';
+
+                var label = document.createElement('span');
+                label.className = 'font-semibold text-gray-300';
+                label.textContent = field;
+                row.appendChild(label);
+
+                if (isAdminMode) {
+                    var input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'w-full min-w-0 bg-black border border-dewalt-border rounded px-2 py-1.5 text-right font-bold text-white outline-none focus:border-dewalt-yellow';
+                    input.value = values[field];
+                    input.setAttribute('aria-label', field + ' de ' + product.sku);
+                    input.setAttribute('data-fixed-spec', index);
+                    input.addEventListener('input', function() {
+                        var inputs = container.querySelectorAll('[data-fixed-spec]');
+                        product.specifications = fields.map(function(specField, specIndex) {
+                            return specField + ': ' + inputs[specIndex].value;
+                        }).join('\n');
+                        saveProductsToStorage();
+                    });
+                    row.appendChild(input);
+                } else {
+                    var value = document.createElement('span');
+                    value.className = 'text-right font-bold text-white';
+                    value.textContent = values[field] || '—';
+                    row.appendChild(value);
+                }
+
+                rows.appendChild(row);
+            });
+
+            container.appendChild(rows);
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && !document.getElementById('adminLoginModal').classList.contains('hidden')) closeAdminLogin();
+            if (event.key === 'Escape' && activeProductDetailId !== null) closeProductDetail();
+        });
+
+        function toggleProductStock(id) {
+            for (var i = 0; i < products.length; i++) {
+                if (products[i].id === id) {
+                    products[i].inStock = !products[i].inStock;
+                    saveProductsToStorage();
+                    filterProducts();
+                    break;
+                }
+            }
+        }
+
+        function addToCartWithQty(productId) {
+            var input = document.getElementById('qtyInput_' + productId);
+            var qtyToAdd = parseInt(input.value) || 1;
+
+            var existing = null;
+            for (var i = 0; i < cart.length; i++) {
+                if (cart[i].id === productId) {
+                    existing = cart[i];
+                    break;
+                }
+            }
+
+            var productObj = null;
+            for (var k = 0; k < products.length; k++) {
+                if (products[k].id === productId) {
+                    productObj = products[k];
+                    break;
+                }
+            }
+
+            if (existing) {
+                existing.quantity += qtyToAdd;
+            } else {
+                cart.push({ id: productId, quantity: qtyToAdd });
+            }
+
+            updateCartBadge();
+            showToastNotification((productObj ? productObj.sku : 'Producto') + ' agregado con ' + qtyToAdd.toLocaleString() + ' UNID a tu lista');
+        }
+
+        function showToastNotification(message) {
+            var container = document.getElementById('toastContainer');
+            var toast = document.createElement('div');
+            toast.className = 'toast-notification bg-black border border-dewalt-yellow text-white px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3 text-xs font-semibold';
+            toast.innerHTML = '<i class="fa-solid fa-circle-check text-dewalt-yellow text-base"></i><span>' + message + '</span>';
+            container.appendChild(toast);
+
+            setTimeout(function() {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 2600);
+        }
+
+        function updateCartBadge() {
+            document.getElementById('cartBadge').innerText = cart.length;
+        }
+
+        function openCartModal() {
+            renderCartModal();
+            document.getElementById('cartModal').classList.remove('hidden');
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').classList.add('hidden');
+        }
+
+        function updateQuantityInCart(productId, newQty) {
+            for (var i = 0; i < cart.length; i++) {
+                if (cart[i].id === productId) {
+                    cart[i].quantity = parseInt(newQty) || 1;
+                    if (cart[i].quantity <= 0) removeCartItem(productId);
+                    break;
+                }
+            }
+            updateCartBadge();
+            renderCartModal();
+        }
+
+        function removeCartItem(productId) {
+            var newCart = [];
+            for (var i = 0; i < cart.length; i++) {
+                if (cart[i].id !== productId) {
+                    newCart.push(cart[i]);
+                }
+            }
+            cart = newCart;
+            updateCartBadge();
+            renderCartModal();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartBadge();
+            renderCartModal();
+        }
+
+        function renderCartModal() {
+            var container = document.getElementById('cartItemsContainer');
+            var totalUnitsEl = document.getElementById('cartTotalUnits');
+
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="text-center py-8 border border-dashed border-dewalt-border rounded-xl"><i class="fa-solid fa-clipboard text-3xl text-gray-600 mb-2"></i><p class="text-xs text-gray-400 font-semibold">Tu requerimiento está vacío.</p><p class="text-[11px] text-gray-500 mt-0.5">Agrega discos o productos seleccionando la cantidad y haciendo clic en "Agregar a la Lista".</p></div>';
+                totalUnitsEl.innerText = '0 UNID';
+                return;
+            }
+
+            var totalUnits = 0;
+            var html = '';
+
+            for (var i = 0; i < cart.length; i++) {
+                var item = cart[i];
+                var product = null;
+                for (var j = 0; j < products.length; j++) {
+                    if (products[j].id === item.id) {
+                        product = products[j];
+                        break;
+                    }
+                }
+                
+                if (product) {
+                    totalUnits += item.quantity;
+                    html += '<div class="flex items-center justify-between bg-black/60 p-3 rounded-xl border border-dewalt-border hover:border-dewalt-yellow/40 transition-all">' +
+                                '<div class="flex items-center space-x-3">' +
+                                    '<img src="' + product.image + '" class="w-10 h-10 object-contain rounded-full border border-dewalt-border p-0.5 bg-black">' +
+                                    '<div>' +
+                                        '<span class="text-dewalt-yellow font-mono text-xs font-bold">' + product.sku + '</span>' +
+                                        '<h5 class="text-xs font-bold text-white leading-tight">' + product.name + '</h5>' +
+                                    '</div>' +
+                                '</div>' +
+                                '<div class="flex items-center space-x-3">' +
+                                    '<div class="flex items-center space-x-1">' +
+                                        '<button onclick="updateQuantityInCart(' + product.id + ', ' + (item.quantity - 1) + ')" class="w-6 h-6 bg-black border border-dewalt-border rounded text-white text-xs font-bold flex items-center justify-center hover:border-dewalt-yellow">-</button>' +
+                                        '<input type="number" value="' + item.quantity + '" min="1" step="1" onchange="updateQuantityInCart(' + product.id + ', this.value)" class="w-20 bg-black border border-dewalt-border rounded text-center font-bold text-dewalt-yellow text-xs py-1 outline-none">' +
+                                        '<button onclick="updateQuantityInCart(' + product.id + ', ' + (item.quantity + 1) + ')" class="w-6 h-6 bg-black border border-dewalt-border rounded text-white text-xs font-bold flex items-center justify-center hover:border-dewalt-yellow">+</button>' +
+                                    '</div>' +
+                                    '<button onclick="removeCartItem(' + product.id + ')" class="text-gray-500 hover:text-red-400 text-sm p-1" title="Eliminar ítem"><i class="fa-solid fa-trash-can"></i></button>' +
+                                '</div>' +
+                            '</div>';
+                }
+            }
+
+            container.innerHTML = html;
+            totalUnitsEl.innerText = totalUnits.toLocaleString() + ' UNID';
+        }
+
+        function sendWhatsAppQuote() {
+            if (cart.length === 0) return;
+
+            var company = document.getElementById('clientCompany').value.trim() || 'No especificada';
+            var city = document.getElementById('clientCity').value.trim() || 'No especificada';
+
+            var itemsListStr = '';
+            var totalUnits = 0;
+
+            for (var i = 0; i < cart.length; i++) {
+                var item = cart[i];
+                var product = null;
+                for (var j = 0; j < products.length; j++) {
+                    if (products[j].id === item.id) {
+                        product = products[j];
+                        break;
+                    }
+                }
+
+                if (product) {
+                    totalUnits += item.quantity;
+                    itemsListStr += '• *' + product.sku + '* - ' + product.name + '%0A  Cantidad: ' + item.quantity.toLocaleString() + ' UNID%0A';
+                }
+            }
+
+            var phoneNumber = "51905430860";
+            var message = '*SOLICITUD DE REQUERIMIENTO MULTI-PRODUCTO - MAQINPRO 2026*%0A%0A' +
+                            '*Empresa:* ' + company + '%0A' +
+                            '*Destino:* ' + city + '%0A%0A' +
+                            '*ÍTEMS REQUERIDOS (' + cart.length + ' ÍTEMS):*%0A' + itemsListStr + '%0A' +
+                            '*TOTAL UNIDADES SOLICITADAS:* ' + totalUnits.toLocaleString() + ' UNID%0A%0A' +
+                            'Favor enviar cotización formal acumulada al tipo de cambio del día.';
+
+            window.open('https://wa.me/' + phoneNumber + '?text=' + message, '_blank');
+        }
+
+        function requestGeneralCategoryQuote() {
+            var phoneNumber = "51905430860";
+            var message = '*CONSULTA MAQINPRO 2026*%0A%0AHola, deseo consultar disponibilidad y cotización para la categoría: *' + currentCategory + '*.';
+            window.open('https://wa.me/' + phoneNumber + '?text=' + message, '_blank');
+        }
+
+        function toggleMobileSidebar() {
+            var sidebar = document.getElementById('sidebarMenu');
+            sidebar.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
