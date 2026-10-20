@@ -30,6 +30,17 @@
     </script>
 
     <style>
+        .brand-logo-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-logo {
+            display: block;
+            object-fit: contain;
+        }
+
         body {
             background-color: #0d0d0d;
             color: #f3f4f6;
@@ -107,15 +118,20 @@
                         <i class="fa-solid fa-bars"></i>
                     </button>
 
-                    <div class="flex items-center space-x-2">
-                        <button type="button" onclick="goHome()" aria-label="Ir a la página principal" class="inline-flex items-center hover:opacity-90 transition-opacity">
-                            <img src="images/maqinpro.jpg" class="h-10 max-w-[190px] object-contain" alt="MAQINPRO">
+                    <div class="flex items-center space-x-3">
+                        <button type="button" onclick="goHome()" aria-label="Ir a la página principal" class="brand-logo-wrap inline-flex items-center hover:opacity-90 transition-opacity">
+                            <img src="images/maqinpro-clean.png" class="brand-logo h-10 max-w-[190px] object-contain" alt="MAQINPRO">
                         </button>
-                        <span class="text-xs sm:text-sm font-semibold tracking-widest text-gray-400 uppercase hidden sm:inline">| INDUSTRIAL</span>
+                        <span class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-gray-400 uppercase">
+                            <span class="h-5 w-px bg-gray-300" aria-hidden="true"></span>
+                            <span>INDUSTRIAL</span>
+                            <span class="h-5 w-px bg-gray-300" aria-hidden="true"></span>
+                        </span>
                     </div>
-                    <div class="h-6 w-px bg-gray-700 hidden sm:block"></div>
                     <div class="hidden sm:flex items-center gap-2">
-                        <img src="images/dewalt.jpg" class="h-10 object-contain" alt="DEWALT">
+                        <div class="brand-logo-wrap">
+                            <img src="images/dewalt-clean.png" class="brand-logo h-10 object-contain" alt="DEWALT">
+                        </div>
                     </div>
                 </div>
 
@@ -143,7 +159,7 @@
                         <i class="fa-solid fa-boxes-packing"></i> Catálogo de Venta Industrial al por Mayor 2026
                     </div>
                     <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                        PORTAFOLIO DE HERRAMIENTAS Y CONSUMIBLES <img src="images/dewalt.jpg" class="h-8 inline-block align-middle object-contain" alt="DEWALT">
+                        PORTAFOLIO DE HERRAMIENTAS Y CONSUMIBLES <img src="images/dewalt-clean.png" class="h-8 inline-block align-middle object-contain" alt="DEWALT">
                     </h1>
                     <p class="text-gray-300 text-xs sm:text-sm max-w-2xl font-light">
                         Agrega varios ítems y sus cantidades al requerimiento. Puedes seguir navegando para añadir diferentes discos o herramientas a tu lista consolidada antes de enviar el pedido por WhatsApp.
@@ -332,7 +348,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center md:text-left">
                 <div class="lg:col-span-1">
-                    <h4 class="mb-1"><img src="images/maqinpro.jpg" class="h-10 max-w-[220px] object-contain" alt="MAQINPRO"></h4>
+                    <h4 class="mb-1"><img src="images/maqinpro-clean.png" class="h-10 max-w-[220px] object-contain" alt="MAQINPRO"></h4>
                     <p class="text-gray-400 text-xs leading-relaxed">
                         Distribución mayorista autorizada de herramientas y consumibles industriales DeWalt 2026.
                     </p>
@@ -420,7 +436,7 @@
             </header>
             <div class="grid md:grid-cols-2 min-h-0 overflow-y-auto">
                 <div class="industrial-pattern min-h-64 md:min-h-[440px] flex items-center justify-center p-6 sm:p-10 border-b md:border-b-0 md:border-r border-dewalt-border">
-                    <img id="productDetailImage" src="" alt="" class="hidden max-h-80 md:max-h-[440px] w-full object-contain drop-shadow-2xl">
+                    <img id="productDetailImage" src="" alt="" class="hidden h-full w-full max-h-80 md:max-h-[440px] object-contain drop-shadow-2xl">
                     <div id="productDetailImagePlaceholder" class="text-center text-dewalt-yellow/70">
                         <i class="fa-solid fa-screwdriver-wrench text-6xl"></i>
                         <p class="text-xs text-gray-500 mt-3">Imagen no disponible</p>
@@ -1797,12 +1813,23 @@
             var detailImage = document.getElementById('productDetailImage');
             var imagePlaceholder = document.getElementById('productDetailImagePlaceholder');
             detailImage.alt = product.name;
-            if (product.category === 'DISCOS') {
-                detailImage.removeAttribute('src');
-                detailImage.classList.add('hidden');
-                imagePlaceholder.classList.add('hidden');
-            } else if (product.image) {
-                detailImage.src = product.image;
+            var detailImageSources = getProductDetailImageSources(product);
+            detailImage.onerror = null;
+            if (detailImageSources.length > 0) {
+                var detailImageIndex = 0;
+                detailImage.onerror = function() {
+                    detailImageIndex++;
+                    if (detailImageIndex < detailImageSources.length) {
+                        detailImage.src = detailImageSources[detailImageIndex];
+                        return;
+                    }
+
+                    detailImage.onerror = null;
+                    detailImage.removeAttribute('src');
+                    detailImage.classList.add('hidden');
+                    imagePlaceholder.classList.remove('hidden');
+                };
+                detailImage.src = detailImageSources[detailImageIndex];
                 detailImage.classList.remove('hidden');
                 imagePlaceholder.classList.add('hidden');
             } else {
@@ -1815,6 +1842,25 @@
             renderProductDetailField('productDetailIncludes', 'Qué incluye', 'includes', product);
             renderProductDetailField('productDetailTechnologies', 'Tecnologías', 'technologies', product);
             document.getElementById('productDetailAdminNote').classList.toggle('hidden', !isAdminMode);
+        }
+
+        function getProductDetailImageSources(product) {
+            var sku = product.sku.toLowerCase();
+            var normalizedSku = sku.replace(/[^a-z0-9]/g, '');
+            var localImageSources = [
+                'images/' + sku + '.jpg',
+                'images/' + normalizedSku + '.jpg',
+                'images/' + sku + '.webp',
+                'images/' + normalizedSku + '.webp',
+                'images/' + sku + '.jfif'
+            ];
+
+            if (product.image && product.image.indexOf('data:') === 0) {
+                return [product.image].concat(localImageSources);
+            }
+
+            if (product.image) localImageSources.push(product.image);
+            return localImageSources;
         }
 
         function renderProductDetailField(containerId, title, fieldName, product) {
